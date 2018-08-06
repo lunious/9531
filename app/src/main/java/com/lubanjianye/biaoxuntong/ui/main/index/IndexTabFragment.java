@@ -104,11 +104,6 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
     }
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mRxVText.stopAutoScroll();
-    }
 
 
     @Override
@@ -123,6 +118,8 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
 
         //取消注册EventBus
         EventBus.getDefault().unregister(this);
+        mRxVText.stopAutoScroll();
+
     }
 
     @Override
