@@ -123,7 +123,7 @@
                 android:textSize="@dimen/d14" />
 
 
-            <TextView
+            <com.lubanjianye.biaoxuntong.util.rx.RxTextViewVertical
                 android:id="@+id/scroll_view"
                 android:layout_width="@dimen/d0"
                 android:layout_height="match_parent"
@@ -131,8 +131,7 @@
                 android:layout_marginRight="@dimen/d2"
                 android:layout_weight="6"
                 android:gravity="center_vertical"
-                android:maxLines="1"
-                android:text="2年前工程事故追责,33名总监/监理被停职6个月" />
+                android:maxLines="1" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/vip_detail"

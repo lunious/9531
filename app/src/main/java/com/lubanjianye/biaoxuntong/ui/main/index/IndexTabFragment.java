@@ -45,6 +45,7 @@ import com.lubanjianye.biaoxuntong.util.dialog.PromptButton;
 import com.lubanjianye.biaoxuntong.util.dialog.PromptButtonListener;
 import com.lubanjianye.biaoxuntong.util.dialog.PromptDialog;
 import com.lubanjianye.biaoxuntong.util.netStatus.NetUtil;
+import com.lubanjianye.biaoxuntong.util.rx.RxTextViewVertical;
 import com.lubanjianye.biaoxuntong.util.sp.AppSharePreferenceMgr;
 import com.lubanjianye.biaoxuntong.util.toast.ToastUtil;
 import com.lzy.okgo.OkGo;
@@ -83,6 +84,32 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
     private String locationArea = "";
     private String locationCode = "";
     private String provinceCode = "";
+    private RxTextViewVertical mRxVText = null;
+
+
+    //跑马灯相关
+    private ArrayList<String> titleList = new ArrayList<String>();
+
+
+    private void initRunText() {
+        mRxVText.setTextList(titleList);
+        //设置属性
+        mRxVText.setText(14, 4, 0xff9e9e9e);
+        //设置停留时长间隔
+        mRxVText.setTextStillTime(4000);
+        //设置进入和退出的时间间隔
+        mRxVText.setAnimTime(400);
+
+        mRxVText.startAutoScroll();
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mRxVText.stopAutoScroll();
+    }
+
 
     @Override
     public Object setLayout() {
@@ -112,6 +139,7 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
         llSearch.setOnClickListener(this);
         ll_location = getView().findViewById(R.id.ll_location);
         tv_location = getView().findViewById(R.id.tv_location);
+        mRxVText = getView().findViewById(R.id.scroll_view);
         ll_location.setOnClickListener(this);
 
 
@@ -159,6 +187,50 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
     public void initData() {
 
         requestData(false);
+
+        //跑马灯效果
+        getScrollViewData();
+
+    }
+
+    private void getScrollViewData() {
+
+        OkGo.<String>post(BiaoXunTongApi.URL_GETINDEXHYZXLIST)
+                .cacheMode(CacheMode.IF_NONE_CACHE_REQUEST)
+                .cacheTime(3600 * 48000)
+                .execute(new StringCallback() {
+
+                    @Override
+                    public void onCacheSuccess(Response<String> response) {
+                        final JSONObject object = JSON.parseObject(response.body());
+                        final JSONObject data = object.getJSONObject("data");
+                        final JSONArray array = data.getJSONArray("list");
+
+                        if (array != null) {
+
+                            for (int j = 0; j < array.size(); j++) {
+                                JSONObject list = array.getJSONObject(j);
+                                titleList.add(list.getString("title"));
+                            }
+                            initRunText();
+                        }
+                    }
+
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        final JSONObject object = JSON.parseObject(response.body());
+                        final JSONObject data = object.getJSONObject("data");
+                        final JSONArray array = data.getJSONArray("list");
+
+                        if (array != null) {
+                            for (int j = 0; j < array.size(); j++) {
+                                JSONObject list = array.getJSONObject(j);
+                                titleList.add(list.getString("title"));
+                            }
+                            initRunText();
+                        }
+                    }
+                });
 
     }
 

@@ -281,9 +281,6 @@ public class IndexListFragment extends BaseFragment1 {
         if (!NetUtil.isNetworkConnected(getActivity())) {
             ToastUtil.shortBottonToast(getContext(), "请检查网络设置");
             mAdapter.setEnableLoadMore(false);
-            if (!isInitCache) {
-                loadingStatus.showLoading();
-            }
 
             BiaoXunTong.getHandler().postDelayed(new Runnable() {
                 @Override
@@ -292,7 +289,6 @@ public class IndexListFragment extends BaseFragment1 {
                 }
             }, 500);
         } else {
-            loadingStatus.showLoading();
             BiaoXunTong.getHandler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
