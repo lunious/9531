@@ -61,6 +61,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.launcher.LauncherScrollActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Launcher"
+            android:windowSoftInputMode="adjustPan" />
+
         <!--百度定位开始-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -77,13 +84,6 @@
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
             android:targetActivity="me.shaohui.shareutil._ShareActivity" />
-
-        <activity
-            android:name=".ui.launcher.LauncherScrollActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Launcher"
-            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".base.MainActivity"

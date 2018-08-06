@@ -109,7 +109,8 @@ public class LauncherActivity extends BaseActivity {
 
         if (!AppSharePreferenceMgr.contains(this, "first_into_app")) {
             //进入引导页
-            ARouter.getInstance().build("/com/LauncherScrollActivity").navigation();
+//            ARouter.getInstance().build("/com/LauncherScrollActivity").navigation();
+            startActivity(new Intent(LauncherActivity.this, LauncherScrollActivity.class));
             finish();
         } else {
             //进入主页

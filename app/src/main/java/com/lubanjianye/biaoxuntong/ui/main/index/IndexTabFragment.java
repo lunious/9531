@@ -10,8 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -19,7 +19,6 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.flyco.tablayout.SlidingTabLayout;
 import com.igexin.sdk.PushManager;
 import com.lubanjianye.biaoxuntong.R;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTong;
@@ -36,7 +35,6 @@ import com.lubanjianye.biaoxuntong.ui.citypicker.adapter.OnPickListener;
 import com.lubanjianye.biaoxuntong.ui.citypicker.model.City;
 import com.lubanjianye.biaoxuntong.ui.citypicker.model.HotCity;
 import com.lubanjianye.biaoxuntong.ui.citypicker.model.LocatedCity;
-import com.lubanjianye.biaoxuntong.ui.main.index.sortcolumn.SortColumnActivity;
 import com.lubanjianye.biaoxuntong.ui.update.UpdateAppBean;
 import com.lubanjianye.biaoxuntong.ui.update.UpdateAppManager;
 import com.lubanjianye.biaoxuntong.ui.update.UpdateCallback;
@@ -68,37 +66,22 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 import static com.lubanjianye.biaoxuntong.app.BiaoXunTong.getApplicationContext;
 
-
 public class IndexTabFragment extends BaseFragment1 implements View.OnClickListener, BDLocationListener, EasyPermissions.PermissionCallbacks {
 
-    private SlidingTabLayout indexStlTab = null;
     private ViewPager indexVp = null;
     private LinearLayout llSearch = null;
-    private ImageView ivAdd = null;
-
     private List<HotCity> hotCities;
-
     public LocationClient mLocationClient = null;
-
     private String clientID = PushManager.getInstance().getClientid(getApplicationContext());
-
     private IndexFragmentAdapter mAdapter = null;
-
     private final List<String> mList = new ArrayList<String>();
-
-
     private long userId = 0;
     private PromptDialog promptDialog;
-
     private boolean isInitCache = false;
-
     private LinearLayout ll_location = null;
     private AppCompatTextView tv_location = null;
-
-
     private String locationArea = "";
     private String locationCode = "";
-
     private String provinceCode = "";
 
     @Override
@@ -124,14 +107,9 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
         //创建对象
         promptDialog = new PromptDialog(getActivity());
 
-        indexStlTab = getView().findViewById(R.id.index_stl_tab);
         indexVp = getView().findViewById(R.id.index_vp);
         llSearch = getView().findViewById(R.id.ll_search);
-        ivAdd = getView().findViewById(R.id.iv_add);
-
         llSearch.setOnClickListener(this);
-        ivAdd.setOnClickListener(this);
-
         ll_location = getView().findViewById(R.id.ll_location);
         tv_location = getView().findViewById(R.id.tv_location);
         ll_location.setOnClickListener(this);
@@ -173,12 +151,6 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
         if (EventMessage.LOGIN_SUCCSS.equals(message.getMessage()) || EventMessage.LOGIN_OUT.equals(message.getMessage())
                 || EventMessage.TAB_CHANGE.equals(message.getMessage())) {
             //更新UI
-            if (indexStlTab != null) {
-                indexStlTab.setCurrentTab(0);
-                indexVp.setCurrentItem(0);
-                indexStlTab.setViewPager(indexVp);
-                indexStlTab.notifyDataSetChanged();
-            }
             requestData(true);
         }
     }
@@ -239,278 +211,14 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
         //保存地区code
         AppSharePreferenceMgr.put(getApplicationContext(), EventMessage.LOCA_AREA_CODE, provinceCode);
 
-
-        if (AppSharePreferenceMgr.contains(getContext(), EventMessage.LOGIN_SUCCSS)) {
-            //得到用户userId
-            List<UserProfile> users = DatabaseManager.getInstance().getDao().loadAll();
-            for (int i = 0; i < users.size(); i++) {
-                userId = users.get(0).getId();
-            }
-
-            if (isRefresh) {
-                OkGo.<String>post(BiaoXunTongApi.URL_INDEXTAB)
-                        .params("userId", userId)
-                        .params("clientId", clientID)
-                        .params("diqu", mDiqu)
-                        .cacheKey("index_tab_cache_login" + userId + mDiqu)
-                        .cacheMode(CacheMode.REQUEST_FAILED_READ_CACHE)
-                        .cacheTime(3600 * 48000)
-                        .execute(new StringCallback() {
-                            @Override
-                            public void onSuccess(Response<String> response) {
-
-                                final JSONObject object = JSON.parseObject(response.body());
-                                String status = object.getString("status");
-                                String message = object.getString("message");
-
-                                if ("200".equals(status)) {
-                                    final JSONArray ownerList = object.getJSONArray("data");
-                                    if (mList.size() > 0) {
-                                        mList.clear();
-                                    }
-
-                                    for (int i = 0; i < ownerList.size(); i++) {
-                                        final JSONObject list = ownerList.getJSONObject(i);
-                                        String name = list.getString("name");
-                                        mList.add(name);
-                                    }
-
-                                    setUI(mList);
-
-                                } else {
-                                    ToastUtil.shortToast(getContext(), message);
-                                }
-                            }
-
-                            @Override
-                            public void onCacheSuccess(Response<String> response) {
-                                if (!isInitCache) {
-                                    final JSONObject object = JSON.parseObject(response.body());
-                                    String status = object.getString("status");
-                                    String message = object.getString("message");
-
-                                    if ("200".equals(status)) {
-                                        final JSONArray ownerList = object.getJSONArray("data");
-                                        if (mList.size() > 0) {
-                                            mList.clear();
-                                        }
-
-                                        for (int i = 0; i < ownerList.size(); i++) {
-                                            final JSONObject list = ownerList.getJSONObject(i);
-                                            String name = list.getString("name");
-                                            mList.add(name);
-                                        }
-
-                                        setUI(mList);
-
-                                    } else {
-                                        ToastUtil.shortToast(getContext(), message);
-                                    }
-                                    isInitCache = true;
-                                }
-                            }
-                        });
-            } else {
-
-                OkGo.<String>post(BiaoXunTongApi.URL_INDEXTAB)
-                        .params("userId", userId)
-                        .params("clientId", clientID)
-                        .params("diqu", mDiqu)
-                        .cacheKey("index_tab_cache_login" + userId + mDiqu)
-                        .cacheMode(CacheMode.IF_NONE_CACHE_REQUEST)
-                        .cacheTime(3600 * 48000)
-                        .execute(new StringCallback() {
-                            @Override
-                            public void onSuccess(Response<String> response) {
-
-                                final JSONObject object = JSON.parseObject(response.body());
-                                String status = object.getString("status");
-                                String message = object.getString("message");
-
-                                if ("200".equals(status)) {
-                                    final JSONArray ownerList = object.getJSONArray("data");
-                                    if (mList.size() > 0) {
-                                        mList.clear();
-                                    }
-
-                                    for (int i = 0; i < ownerList.size(); i++) {
-                                        final JSONObject list = ownerList.getJSONObject(i);
-                                        String name = list.getString("name");
-                                        mList.add(name);
-                                    }
-
-                                    setUI(mList);
-
-                                } else {
-                                    ToastUtil.shortToast(getContext(), message);
-                                }
-                            }
-
-                            @Override
-                            public void onCacheSuccess(Response<String> response) {
-                                if (!isInitCache) {
-                                    final JSONObject object = JSON.parseObject(response.body());
-                                    String status = object.getString("status");
-                                    String message = object.getString("message");
-
-                                    if ("200".equals(status)) {
-                                        final JSONArray ownerList = object.getJSONArray("data");
-                                        if (mList.size() > 0) {
-                                            mList.clear();
-                                        }
-
-                                        for (int i = 0; i < ownerList.size(); i++) {
-                                            final JSONObject list = ownerList.getJSONObject(i);
-                                            String name = list.getString("name");
-                                            mList.add(name);
-                                        }
-
-                                        setUI(mList);
-
-                                    } else {
-                                        ToastUtil.shortToast(getContext(), message);
-                                    }
-                                    isInitCache = true;
-                                }
-                            }
-                        });
-            }
-
-
-        } else {
-
-            if (isRefresh) {
-                OkGo.<String>post(BiaoXunTongApi.URL_INDEXTAB)
-                        .params("clientId", clientID)
-                        .params("diqu", mDiqu)
-                        .cacheKey("index_tab_cache_no_login" + userId + mDiqu)
-                        .cacheMode(CacheMode.REQUEST_FAILED_READ_CACHE)
-                        .cacheTime(3600 * 48000)
-                        .execute(new StringCallback() {
-                            @Override
-                            public void onSuccess(Response<String> response) {
-                                final JSONObject object = JSON.parseObject(response.body());
-                                String status = object.getString("status");
-                                String message = object.getString("message");
-
-                                if ("200".equals(status)) {
-                                    final JSONArray ownerList = object.getJSONArray("data");
-                                    if (mList.size() > 0) {
-                                        mList.clear();
-                                    }
-
-                                    for (int i = 0; i < ownerList.size(); i++) {
-                                        final JSONObject list = ownerList.getJSONObject(i);
-                                        String name = list.getString("name");
-                                        mList.add(name);
-                                    }
-
-                                    setUI(mList);
-                                } else {
-                                    ToastUtil.shortToast(getContext(), message);
-                                }
-                            }
-
-                            @Override
-                            public void onCacheSuccess(Response<String> response) {
-                                if (!isInitCache) {
-                                    final JSONObject object = JSON.parseObject(response.body());
-                                    String status = object.getString("status");
-                                    String message = object.getString("message");
-
-                                    if ("200".equals(status)) {
-                                        final JSONArray ownerList = object.getJSONArray("data");
-                                        if (mList.size() > 0) {
-                                            mList.clear();
-                                        }
-
-                                        for (int i = 0; i < ownerList.size(); i++) {
-                                            final JSONObject list = ownerList.getJSONObject(i);
-                                            String name = list.getString("name");
-                                            mList.add(name);
-                                        }
-
-                                        setUI(mList);
-
-                                    } else {
-                                        ToastUtil.shortToast(getContext(), message);
-                                    }
-                                    isInitCache = true;
-                                }
-                            }
-                        });
-            } else {
-                OkGo.<String>post(BiaoXunTongApi.URL_INDEXTAB)
-                        .params("clientId", clientID)
-                        .params("diqu", mDiqu)
-                        .cacheKey("index_tab_cache_no_login" + userId + mDiqu)
-                        .cacheMode(CacheMode.IF_NONE_CACHE_REQUEST)
-                        .cacheTime(3600 * 48000)
-                        .execute(new StringCallback() {
-                            @Override
-                            public void onSuccess(Response<String> response) {
-                                final JSONObject object = JSON.parseObject(response.body());
-                                String status = object.getString("status");
-                                String message = object.getString("message");
-
-                                if ("200".equals(status)) {
-                                    final JSONArray ownerList = object.getJSONArray("data");
-                                    if (mList.size() > 0) {
-                                        mList.clear();
-                                    }
-
-                                    for (int i = 0; i < ownerList.size(); i++) {
-                                        final JSONObject list = ownerList.getJSONObject(i);
-                                        String name = list.getString("name");
-                                        mList.add(name);
-                                    }
-
-                                    setUI(mList);
-                                } else {
-                                    ToastUtil.shortToast(getContext(), message);
-                                }
-                            }
-
-                            @Override
-                            public void onCacheSuccess(Response<String> response) {
-                                if (!isInitCache) {
-                                    final JSONObject object = JSON.parseObject(response.body());
-                                    String status = object.getString("status");
-                                    String message = object.getString("message");
-
-                                    if ("200".equals(status)) {
-                                        final JSONArray ownerList = object.getJSONArray("data");
-                                        if (mList.size() > 0) {
-                                            mList.clear();
-                                        }
-
-                                        for (int i = 0; i < ownerList.size(); i++) {
-                                            final JSONObject list = ownerList.getJSONObject(i);
-                                            String name = list.getString("name");
-                                            mList.add(name);
-                                        }
-
-                                        setUI(mList);
-
-                                    } else {
-                                        ToastUtil.shortToast(getContext(), message);
-                                    }
-                                    isInitCache = true;
-                                }
-                            }
-                        });
-            }
-
-
-        }
+        setUI(mList);
 
     }
 
 
     private void setUI(List<String> mList) {
-        mAdapter = new IndexFragmentAdapter(getContext(), getChildFragmentManager(), mList);
+        mAdapter = new IndexFragmentAdapter(getChildFragmentManager());
         indexVp.setAdapter(mAdapter);
-        indexStlTab.setViewPager(indexVp);
         mAdapter.notifyDataSetChanged();
 
     }
@@ -524,9 +232,6 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
                 intent.putExtra("searchTye", 1);
                 startActivity(intent);
-                break;
-            case R.id.iv_add:
-                startActivity(new Intent(getActivity(), SortColumnActivity.class));
                 break;
             case R.id.ll_location:
                 if (!TextUtils.isEmpty(locationArea)) {
@@ -545,11 +250,6 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
                                         if (!data.getName().equals(tv_location.getText().toString())) {
                                             tv_location.setText(String.format("%s", data.getName()));
                                             provinceCode = data.getCode();
-                                            if (indexStlTab != null) {
-                                                indexStlTab.setCurrentTab(0);
-                                                indexStlTab.setViewPager(indexVp);
-                                                indexStlTab.notifyDataSetChanged();
-                                            }
                                             requestData(true);
                                             EventBus.getDefault().post(new EventMessage(EventMessage.LOCA_AREA_CHANGE));
                                         }
@@ -587,11 +287,6 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
                                         if (!data.getName().equals(tv_location.getText().toString())) {
                                             tv_location.setText(String.format("%s", data.getName()));
                                             provinceCode = data.getCode();
-                                            if (indexStlTab != null) {
-                                                indexStlTab.setCurrentTab(0);
-                                                indexStlTab.setViewPager(indexVp);
-                                                indexStlTab.notifyDataSetChanged();
-                                            }
                                             requestData(true);
                                             EventBus.getDefault().post(new EventMessage(EventMessage.LOCA_AREA_CHANGE));
                                         }
@@ -760,14 +455,7 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
                         tv_location.setText(locationArea);
 
                         //更新UI
-                        if (indexStlTab != null) {
-                            indexStlTab.setCurrentTab(0);
-                            indexStlTab.setViewPager(indexVp);
-                            indexStlTab.notifyDataSetChanged();
-                        }
-
                         provinceCode = locationCode;
-
                         requestData(true);
 
                         EventBus.getDefault().post(new EventMessage(EventMessage.LOCA_AREA_CHANGE));

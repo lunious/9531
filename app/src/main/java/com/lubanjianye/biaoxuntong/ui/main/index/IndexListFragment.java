@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -45,9 +46,11 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +63,6 @@ public class IndexListFragment extends BaseFragment1 {
 
 
     Banner indexItemBanner = null;
-    private String mTitle = null;
     private static String mDiqu = null;
 
 
@@ -73,9 +75,6 @@ public class IndexListFragment extends BaseFragment1 {
     private int page = 1;
     private boolean isInitCache = false;
 
-    public String getTitle() {
-        return mTitle;
-    }
 
     //轮播图
     private void initBanner() {
@@ -207,16 +206,11 @@ public class IndexListFragment extends BaseFragment1 {
 
     private void initAdapter() {
 
-        mTitle = getArguments().getString("title");
 
-        if ("最新标讯".equals(mTitle)) {
-            mAdapter = new IndexListAdapter(R.layout.fragment_index_zxbx_item, mDataList);
-            mAdapter.addHeaderView(getHeaderView());
-            getImage();
-            indexItemBanner.setVisibility(View.VISIBLE);
-        } else {
-            mAdapter = new IndexListAdapter(R.layout.fragment_index_item, mDataList);
-        }
+        mAdapter = new IndexListAdapter(R.layout.fragment_index_zxbx_item, mDataList);
+        mAdapter.addHeaderView(getHeaderView());
+        getImage();
+        indexItemBanner.setVisibility(View.VISIBLE);
 
 
         mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
@@ -391,13 +385,13 @@ public class IndexListFragment extends BaseFragment1 {
             if (isRefresh) {
                 page = 1;
                 OkGo.<String>post(BiaoXunTongApi.URL_GETINDEXLIST)
-                        .params("type", mTitle)
+                        .params("type", "最新标讯")
                         .params("userid", id)
                         .params("page", page)
                         .params("diqu", mDiqu)
                         .params("size", size)
                         .params("deviceId", deviceId)
-                        .cacheKey("index_list_login_cache" + mTitle + mDiqu)
+                        .cacheKey("index_list_login_cache" + id + mDiqu)
                         .cacheMode(CacheMode.REQUEST_FAILED_READ_CACHE)
                         .cacheTime(3600 * 72000)
                         .execute(new StringCallback() {
@@ -465,7 +459,7 @@ public class IndexListFragment extends BaseFragment1 {
                         });
             } else {
                 OkGo.<String>post(BiaoXunTongApi.URL_GETINDEXLIST)
-                        .params("type", mTitle)
+                        .params("type", "最新标讯")
                         .params("userid", id)
                         .params("page", page)
                         .params("diqu", mDiqu)
@@ -511,12 +505,12 @@ public class IndexListFragment extends BaseFragment1 {
             if (isRefresh) {
                 page = 1;
                 OkGo.<String>post(BiaoXunTongApi.URL_GETINDEXLIST)
-                        .params("type", mTitle)
+                        .params("type", "最新标讯")
                         .params("page", page)
                         .params("size", size)
                         .params("diqu", mDiqu)
                         .params("deviceId", deviceId)
-                        .cacheKey("index_list_no_login_cache" + mTitle + mDiqu)
+                        .cacheKey("index_list_no_login_cache" + id + mDiqu)
                         .cacheMode(CacheMode.REQUEST_FAILED_READ_CACHE)
                         .cacheTime(3600 * 72000)
                         .execute(new StringCallback() {
@@ -584,7 +578,7 @@ public class IndexListFragment extends BaseFragment1 {
                         });
             } else {
                 OkGo.<String>post(BiaoXunTongApi.URL_GETINDEXLIST)
-                        .params("type", mTitle)
+                        .params("type", "最新标讯")
                         .params("page", page)
                         .params("size", size)
                         .params("diqu", mDiqu)
@@ -621,9 +615,7 @@ public class IndexListFragment extends BaseFragment1 {
                         });
             }
 
-
         }
-
 
     }
 
@@ -642,9 +634,7 @@ public class IndexListFragment extends BaseFragment1 {
                 bean.setDeadTime(list.getString("deadTime"));
                 bean.setAddress(list.getString("address"));
                 bean.setEntityUrl(list.getString("entityUrl"));
-                if ("最新标讯".equals(mTitle)) {
-                    bean.setType(list.getString("type"));
-                }
+                bean.setType(list.getString("type"));
                 bean.setSignstauts(list.getString("signstauts"));
                 bean.setIsResult(list.getString("isResult"));
                 bean.setIsCorrections(list.getString("isCorrections"));
@@ -667,9 +657,7 @@ public class IndexListFragment extends BaseFragment1 {
                     bean.setDeadTime(list.getString("deadTime"));
                     bean.setAddress(list.getString("address"));
                     bean.setEntityUrl(list.getString("entityUrl"));
-                    if ("最新标讯".equals(mTitle)) {
-                        bean.setType(list.getString("type"));
-                    }
+                    bean.setType(list.getString("type"));
                     bean.setSignstauts(list.getString("signstauts"));
                     bean.setIsResult(list.getString("isResult"));
                     bean.setIsCorrections(list.getString("isCorrections"));
