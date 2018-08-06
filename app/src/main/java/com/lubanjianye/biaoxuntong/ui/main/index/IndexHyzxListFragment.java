@@ -19,7 +19,6 @@ import com.lubanjianye.biaoxuntong.database.DatabaseManager;
 import com.lubanjianye.biaoxuntong.database.UserProfile;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexHyzxDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.view.TipView;
 import com.lubanjianye.biaoxuntong.ui.view.loadmore.CustomLoadMoreView;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
 import com.lubanjianye.biaoxuntong.util.netStatus.NetUtil;
@@ -54,8 +53,6 @@ public class IndexHyzxListFragment extends BaseFragment1 {
     private RecyclerView indexHyzxRecycler = null;
     private SmartRefreshLayout indexHyzxRefresh = null;
     private MultipleStatusView loadingStatus = null;
-    private TipView mTipView = null;
-
 
     private IndexHyzxListAdapter mAdapter;
     private ArrayList<IndexHyzxListBean> mDataList = new ArrayList<>();
@@ -73,8 +70,6 @@ public class IndexHyzxListFragment extends BaseFragment1 {
         indexHyzxRecycler = getView().findViewById(R.id.index_hyzx_recycler);
         indexHyzxRefresh = getView().findViewById(R.id.index_hyzx_refresh);
         loadingStatus = getView().findViewById(R.id.index_hyzx_list_status_view);
-        mTipView = getView().findViewById(R.id.tip_view);
-
 
         //注册EventBus
         EventBus.getDefault().register(this);
@@ -459,26 +454,6 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
         mAdapter.notifyDataSetChanged();
 
-        showTip(data, n);
-
     }
 
-    private void showTip(JSONArray data, int n) {
-        final int a = data.size();
-        if (n == 1) {
-            BiaoXunTong.getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mTipView.show("为你推荐了" + a + "条标讯");
-                }
-            }, 500);
-        } else if (n == 2) {
-            BiaoXunTong.getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mTipView.show("已经是最新数据了");
-                }
-            }, 500);
-        }
-    }
 }

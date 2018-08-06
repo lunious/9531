@@ -6,17 +6,6 @@
     android:orientation="vertical">
 
 
-    <com.lubanjianye.biaoxuntong.ui.view.TipView
-        android:id="@+id/tip_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d28"
-        android:visibility="gone"
-        app:tipBackgroundColor="#5066bfdc"
-        app:tipText="网络错误"
-        app:tipTextColor="@color/main_status_blue"
-        app:tipTextSize="@dimen/s14" />
-
-
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/index_refresh"
         android:layout_width="match_parent"

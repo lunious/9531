@@ -24,19 +24,15 @@ import com.lubanjianye.biaoxuntong.database.DatabaseManager;
 import com.lubanjianye.biaoxuntong.database.UserProfile;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
 import com.lubanjianye.biaoxuntong.ui.detail.IndexArticleDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.detail.ResultArticleDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexBxtgdjDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjycgrowDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjycgtableDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexXcgggDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.chongqing.ResultCqsggjyzbjgDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.sichuan.ResultXjgggDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.sign.SignInActivity;
 import com.lubanjianye.biaoxuntong.ui.view.loadmore.CustomLoadMoreView;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.chongqing.IndexCqsggjyDetailActivity;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjyDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.sichuan.ResultSggjyzbjgDetailActivity;
 import com.lubanjianye.biaoxuntong.util.netStatus.AppSysMgr;
 import com.lubanjianye.biaoxuntong.util.netStatus.NetUtil;
 import com.lubanjianye.biaoxuntong.util.sp.AppSharePreferenceMgr;
@@ -55,9 +51,11 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuCreator;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuItem;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -289,12 +287,6 @@ public class CollectionTabFragment extends BaseFragment1 implements View.OnClick
                 if (!TextUtils.isEmpty(entityUrl)) {
                     if ("采购中标公示".equals(type) || "工程中标结果".equals(type) || "交易结果公示".equals(type) ||
                             "中标公告".equals(type) || "成交公示".equals(type) || "交易结果".equals(type)) {
-                        intent = new Intent(BiaoXunTong.getApplicationContext(), ResultArticleDetailActivity.class);
-                        intent.putExtra("entityId", entityId);
-                        intent.putExtra("entity", entity);
-                        intent.putExtra("ajaxlogtype", "0");
-                        intent.putExtra("mId", "");
-                        startActivity(intent);
 
                     } else {
                         intent = new Intent(BiaoXunTong.getApplicationContext(), IndexArticleDetailActivity.class);
@@ -336,21 +328,6 @@ public class CollectionTabFragment extends BaseFragment1 implements View.OnClick
                         intent.putExtra("mId", "");
                         startActivity(intent);
 
-                    } else if ("xjggg".equals(entity) || "sjggg".equals(entity)) {
-                        intent = new Intent(BiaoXunTong.getApplicationContext(), ResultXjgggDetailActivity.class);
-                        intent.putExtra("entityId", entityId);
-                        intent.putExtra("entity", entity);
-                        intent.putExtra("ajaxlogtype", "0");
-                        intent.putExtra("mId", "");
-                        startActivity(intent);
-
-                    } else if ("sggjyzbjg".equals(entity) || "sggjycgjgrow".equals(entity) || "sggjyjgcgtable".equals(entity)) {
-                        intent = new Intent(BiaoXunTong.getApplicationContext(), ResultSggjyzbjgDetailActivity.class);
-                        intent.putExtra("entityId", entityId);
-                        intent.putExtra("entity", entity);
-                        intent.putExtra("ajaxlogtype", "0");
-                        intent.putExtra("mId", "");
-                        startActivity(intent);
                     } else if ("t_hyzx".equals(entity)) {
 
                     } else if ("sggjycgrow".equals(entity)) {
@@ -362,17 +339,10 @@ public class CollectionTabFragment extends BaseFragment1 implements View.OnClick
                         startActivity(intent);
                     } else if ("cqcggg".equals(entity)) {
                         final String title = data.getEntryName();
-                        ARouter.getInstance().build("/com/BrowserDetailActivity").withString("mApi",BiaoXunTongApi.URL_GETCOLLECTIONLISTDETAIL)
-                                .withString("mTitle",title).withString("mEntity",entity).withInt("mEntityid",entityId).navigation();
+                        ARouter.getInstance().build("/com/BrowserDetailActivity").withString("mApi", BiaoXunTongApi.URL_GETCOLLECTIONLISTDETAIL)
+                                .withString("mTitle", title).withString("mEntity", entity).withInt("mEntityid", entityId).navigation();
                     } else if ("cqsggjy".equals(entity)) {
                         intent = new Intent(BiaoXunTong.getApplicationContext(), IndexCqsggjyDetailActivity.class);
-                        intent.putExtra("entityId", entityId);
-                        intent.putExtra("entity", entity);
-                        intent.putExtra("ajaxlogtype", "0");
-                        intent.putExtra("mId", "");
-                        startActivity(intent);
-                    } else if ("cqsggjyzbjg".equals(entity)) {
-                        intent = new Intent(BiaoXunTong.getApplicationContext(), ResultCqsggjyzbjgDetailActivity.class);
                         intent.putExtra("entityId", entityId);
                         intent.putExtra("entity", entity);
                         intent.putExtra("ajaxlogtype", "0");

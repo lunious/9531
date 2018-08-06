@@ -218,18 +218,6 @@ public class SearchFragment extends BaseFragment1 implements View.OnClickListene
         }
     }
 
-    private void initResultFragment(String content) {
-        showHistory(false);
-        mNewsFragmentList.clear();
-        viewPager.setAdapter(null);
-        List<String> values = new ArrayList<>();
-
-        mNewsFragmentList.add(SearchResultListFragment.newInstance(content));
-        fragmentAdapter = new BaseFragmentStateAdapter(getChildFragmentManager(), mNewsFragmentList, values);
-        viewPager.setAdapter(fragmentAdapter);
-        viewPager.setVisibility(View.VISIBLE);
-    }
-
     private void initIndexFragment(String content) {
         showHistory(false);
         mNewsFragmentList.clear();
@@ -248,7 +236,6 @@ public class SearchFragment extends BaseFragment1 implements View.OnClickListene
             if (searchType == 1) {
                 initIndexFragment(content);
             } else if (searchType == 2) {
-                initResultFragment(content);
             }
         }
 

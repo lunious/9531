@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -22,8 +21,6 @@ import com.lubanjianye.biaoxuntong.base.BaseFragment1;
 import com.lubanjianye.biaoxuntong.database.DatabaseManager;
 import com.lubanjianye.biaoxuntong.database.UserProfile;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.sichuan.ResultSggjyzbjgDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.sichuan.ResultXjgggDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.share.OpenConstant;
 import com.lubanjianye.biaoxuntong.ui.sign.SignInActivity;
 import com.lubanjianye.biaoxuntong.ui.share.OpenBuilder;
@@ -786,23 +783,6 @@ public class IndexScgggDetailFragment extends BaseFragment1 implements View.OnCl
                 }
                 break;
             case R.id.tv_jggg:
-                Log.d("HIUASDSABDBSADA", "哈哈哈为：" + jgEntity + "___" + jgEntityId);
-                if ("xjggg".equals(jgEntity) || "sjggg".equals(jgEntity) || "sggjy".equals(jgEntity) || "sggjycgjgtable".equals(jgEntity)) {
-                    intent = new Intent(getActivity(), ResultXjgggDetailActivity.class);
-                    intent.putExtra("entityId", Integer.valueOf(jgEntityId));
-                    intent.putExtra("entity", jgEntity);
-                    intent.putExtra("ajaxlogtype", "0");
-                    intent.putExtra("mId", "");
-                    startActivity(intent);
-
-                } else if ("sggjyzbjg".equals(jgEntity) || "sggjycgjgrow".equals(jgEntity) || "sggjyjgcgtable".equals(jgEntity)) {
-                    intent = new Intent(getActivity(), ResultSggjyzbjgDetailActivity.class);
-                    intent.putExtra("entityId", Integer.valueOf(jgEntityId));
-                    intent.putExtra("entity", jgEntity);
-                    intent.putExtra("ajaxlogtype", "0");
-                    intent.putExtra("mId", "");
-                    startActivity(intent);
-                }
                 break;
             case R.id.ll_weibo_share_bottom:
                 OpenBuilder.with(getActivity())

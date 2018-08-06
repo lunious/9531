@@ -23,7 +23,6 @@ import com.lubanjianye.biaoxuntong.base.BaseFragment1;
 import com.lubanjianye.biaoxuntong.database.DatabaseManager;
 import com.lubanjianye.biaoxuntong.database.UserProfile;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.chongqing.ResultCqsggjyzbjgDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.sign.SignInActivity;
 import com.lubanjianye.biaoxuntong.ui.share.OpenBuilder;
 import com.lubanjianye.biaoxuntong.ui.share.OpenConstant;
@@ -650,15 +649,6 @@ public class IndexCqsggjyDetailFragment extends BaseFragment1 implements View.On
                 ARouter.getInstance().build("/com/BrowserSuitActivity").withString("mUrl",gzUrl).withString("mTitle","更正公告").navigation();
                 break;
             case R.id.tv_jggg:
-                if ("cqsggjyzbjg".equals(jgEntity)) {
-                    Intent intent = new Intent(BiaoXunTong.getApplicationContext(), ResultCqsggjyzbjgDetailActivity.class);
-                    intent.putExtra("entityId", Integer.valueOf(jgEntityId));
-                    intent.putExtra("entity", jgEntity);
-                    intent.putExtra("ajaxlogtype", "0");
-                    intent.putExtra("mId", "");
-                    startActivity(intent);
-
-                }
                 break;
             default:
                 break;

@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -24,7 +23,6 @@ import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
 import com.lubanjianye.biaoxuntong.ui.detail.IndexArticleDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjycgrowDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.view.TipView;
 import com.lubanjianye.biaoxuntong.ui.view.loadmore.CustomLoadMoreView;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexBxtgdjDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexScgggDetailActivity;
@@ -47,11 +45,9 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +62,6 @@ public class IndexListFragment extends BaseFragment1 {
     Banner indexItemBanner = null;
     private String mTitle = null;
     private static String mDiqu = null;
-    private TipView mTipView = null;
 
 
     private String deviceId = AppSysMgr.getPsuedoUniqueID();
@@ -255,7 +250,6 @@ public class IndexListFragment extends BaseFragment1 {
         indexRecycler = getView().findViewById(R.id.index_recycler);
         indexRefresh = getView().findViewById(R.id.index_refresh);
         loadingStatus = getView().findViewById(R.id.index_list_status_view);
-        mTipView = getView().findViewById(R.id.tip_view);
 
         //注册EventBus
         EventBus.getDefault().register(this);
@@ -695,27 +689,6 @@ public class IndexListFragment extends BaseFragment1 {
 
         mAdapter.notifyDataSetChanged();
 
-
-        showTip(data, n);
-
     }
 
-    private void showTip(JSONArray data, int n) {
-        final int a = data.size();
-        if (n == 1) {
-            BiaoXunTong.getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mTipView.show("为你推荐了" + a + "条标讯");
-                }
-            }, 500);
-        } else if (n == 2) {
-            BiaoXunTong.getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mTipView.show("已经是最新数据了");
-                }
-            }, 500);
-        }
-    }
 }

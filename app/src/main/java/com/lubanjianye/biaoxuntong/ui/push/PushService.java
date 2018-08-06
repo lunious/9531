@@ -13,8 +13,6 @@ import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjyDetail
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjycgrowDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjycgtableDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexXcgggDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.sichuan.ResultSggjyzbjgDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.sichuan.ResultXjgggDetailActivity;
 import com.lubanjianye.biaoxuntong.util.notify.NotifyUtil;
 import com.mixpush.client.core.MixPushIntentService;
 import com.mixpush.client.core.MixPushMessage;
@@ -69,19 +67,7 @@ public class PushService extends MixPushIntentService {
 
         //根据type去跳转页面
         if ("1".equals(mType)) {
-            if ("xjggg".equals(mEntity) || "sjggg".equals(mEntity)) {
-                intent = new Intent(BiaoXunTong.getApplicationContext(), ResultXjgggDetailActivity.class);
-                intent.putExtra("entityId", mEntityId);
-                intent.putExtra("entity", mEntity);
-                intent.putExtra("ajaxlogtype", "1");
-                intent.putExtra("mId", mId);
-            } else if ("sggjyzbjg".equals(mEntity) || "sggjycgjgrow".equals(mEntity) || "sggjyjgcgtable".equals(mEntity)) {
-                intent = new Intent(BiaoXunTong.getApplicationContext(), ResultSggjyzbjgDetailActivity.class);
-                intent.putExtra("entityId", mEntityId);
-                intent.putExtra("entity", mEntity);
-                intent.putExtra("ajaxlogtype", "1");
-                intent.putExtra("mId", mId);
-            } else if ("sggjy".equals(mEntity)) {
+            if ("sggjy".equals(mEntity)) {
                 intent = new Intent(BiaoXunTong.getApplicationContext(), IndexSggjyDetailActivity.class);
                 intent.putExtra("entityId", mEntityId);
                 intent.putExtra("entity", mEntity);

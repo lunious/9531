@@ -22,8 +22,6 @@ import com.lubanjianye.biaoxuntong.database.DatabaseManager;
 import com.lubanjianye.biaoxuntong.database.UserProfile;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.sichuan.ResultSggjyzbjgDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.main.result.detail.sichuan.ResultXjgggDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.sign.SignInActivity;
 import com.lubanjianye.biaoxuntong.ui.share.OpenBuilder;
 import com.lubanjianye.biaoxuntong.ui.share.OpenConstant;
@@ -545,22 +543,6 @@ public class IndexSggjyDetailFragment extends BaseFragment1 implements View.OnCl
                 }
                 break;
             case R.id.tv_jggg:
-                if ("xjggg".equals(jgEntity) || "sjggg".equals(jgEntity) || "sggjy".equals(jgEntity) || "sggjycgjgtable".equals(jgEntity)) {
-                    Intent intent = new Intent(getActivity(), ResultXjgggDetailActivity.class);
-                    intent.putExtra("entityId", Integer.valueOf(jgEntityId));
-                    intent.putExtra("entity", jgEntity);
-                    intent.putExtra("ajaxlogtype", "0");
-                    intent.putExtra("mId", "");
-                    startActivity(intent);
-
-                } else if ("sggjyzbjg".equals(jgEntity) || "sggjycgjgrow".equals(jgEntity) || "sggjyjgcgtable".equals(jgEntity)) {
-                    Intent intent = new Intent(getActivity(), ResultSggjyzbjgDetailActivity.class);
-                    intent.putExtra("entityId", Integer.valueOf(jgEntityId));
-                    intent.putExtra("entity", jgEntity);
-                    intent.putExtra("ajaxlogtype", "0");
-                    intent.putExtra("mId", "");
-                    startActivity(intent);
-                }
                 break;
             case R.id.ll_weibo_share_bottom:
                 OpenBuilder.with(getActivity())

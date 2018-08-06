@@ -14,7 +14,6 @@ import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
 import com.lubanjianye.biaoxuntong.ui.main.collection.CollectionTabFragment;
 import com.lubanjianye.biaoxuntong.ui.main.index.IndexTabFragment;
 import com.lubanjianye.biaoxuntong.ui.main.query.QueryFragment;
-import com.lubanjianye.biaoxuntong.ui.main.result.ResultTabFragment;
 import com.lubanjianye.biaoxuntong.ui.main.user.UserTabFragment;
 import com.lubanjianye.biaoxuntong.ui.view.botton.BottomBar;
 import com.lubanjianye.biaoxuntong.ui.view.botton.BottomBarTab;
@@ -31,7 +30,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.List;
 
 import butterknife.BindView;
-
 import butterknife.Unbinder;
 
 
@@ -41,7 +39,6 @@ public class MainFragment extends BaseFragment {
     public static final int SECOND = 1;
     public static final int THIRD = 2;
     public static final int FOUR = 3;
-    public static final int FIVE = 4;
     @BindView(R.id.main_tab_container)
     FrameLayout mainTabContainer;
     @BindView(R.id.bottomBar)
@@ -49,7 +46,6 @@ public class MainFragment extends BaseFragment {
     Unbinder unbinder;
 
     private BaseFragment1[] mFragments = new BaseFragment1[5];
-
 
 
     @Override
@@ -60,15 +56,13 @@ public class MainFragment extends BaseFragment {
             mFragments[FIRST] = new IndexTabFragment();
             mFragments[SECOND] = new QueryFragment();
             mFragments[THIRD] = new CollectionTabFragment();
-            mFragments[FOUR] = new ResultTabFragment();
-            mFragments[FIVE] = new UserTabFragment();
+            mFragments[FOUR] = new UserTabFragment();
 
             loadMultipleRootFragment(R.id.main_tab_container, FIRST,
                     mFragments[FIRST],
                     mFragments[SECOND],
                     mFragments[THIRD],
-                    mFragments[FOUR],
-                    mFragments[FIVE]);
+                    mFragments[FOUR]);
         } else {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
 
@@ -76,8 +70,7 @@ public class MainFragment extends BaseFragment {
             mFragments[FIRST] = firstFragment;
             mFragments[SECOND] = findChildFragment(QueryFragment.class);
             mFragments[THIRD] = findChildFragment(CollectionTabFragment.class);
-            mFragments[FOUR] = findChildFragment(ResultTabFragment.class);
-            mFragments[FIVE] = findChildFragment(UserTabFragment.class);
+            mFragments[FOUR] = findChildFragment(UserTabFragment.class);
         }
 
     }
@@ -105,7 +98,6 @@ public class MainFragment extends BaseFragment {
                 .addItem(new BottomBarTab(_mActivity, R.mipmap.main_index_tab, getString(R.string.first)))
                 .addItem(new BottomBarTab(_mActivity, R.mipmap.main_query_tab, getString(R.string.second)))
                 .addItem(new BottomBarTab(_mActivity, R.mipmap.main_collection_tab, getString(R.string.third)))
-                .addItem(new BottomBarTab(_mActivity, R.mipmap.main_result_tab, getString(R.string.four)))
                 .addItem(new BottomBarTab(_mActivity, R.mipmap.main_user_tab, getString(R.string.five)));
 
 
@@ -148,11 +140,10 @@ public class MainFragment extends BaseFragment {
         if (EventMessage.READ_STATUS.equals(message.getMessage()) || EventMessage.LOGIN_SUCCSS.equals(message.getMessage())) {
             showMessageCount();
         } else if (EventMessage.LOGIN_OUT.equals(message.getMessage())) {
-            bottomBar.getItem(4).setUnreadCount(-1);
+            bottomBar.getItem(3).setUnreadCount(-1);
         }
 
     }
-
 
 
     private long id = 0;
@@ -176,12 +167,12 @@ public class MainFragment extends BaseFragment {
                             final JSONObject data = userInfo.getJSONObject("data");
                             final int messNum = data.getInteger("mesCount");
                             if (messNum > 0) {
-                                bottomBar.getItem(4).setUnreadCount(0);
+                                bottomBar.getItem(3).setUnreadCount(0);
                             } else {
-                                bottomBar.getItem(4).setUnreadCount(-1);
+                                bottomBar.getItem(3).setUnreadCount(-1);
                             }
                         } else {
-                            bottomBar.getItem(4).setUnreadCount(-1);
+                            bottomBar.getItem(3).setUnreadCount(-1);
                         }
                     }
                 });

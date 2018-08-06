@@ -138,18 +138,6 @@
             android:theme="@style/AppTheme.Main"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.main.result.detail.sichuan.ResultXjgggDetailActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Main"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".ui.main.result.detail.sichuan.ResultSggjyzbjgDetailActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Main"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name=".ui.sign.SignInActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
@@ -351,19 +339,7 @@
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.Main"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".ui.detail.ResultArticleDetailActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Main"
-            android:windowSoftInputMode="adjustPan" />
 
-        <activity
-            android:name=".ui.main.result.detail.chongqing.ResultCqsggjyzbjgDetailActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Main"
-            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.main.index.sortcolumn.SortColumnActivity"
             android:configChanges="keyboardHidden|orientation"
