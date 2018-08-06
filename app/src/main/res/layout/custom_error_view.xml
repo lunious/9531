@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/error_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/d40"
+        android:gravity="center">
+
+    <ImageView
+        android:id="@+id/error_retry_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_error" />
+
+    <TextView
+        android:id="@+id/error_view_tv"
+        style="@style/MultipleStatusView.Content"
+        android:text="@string/error_view_hint"
+        android:paddingTop="@dimen/d8"
+        android:textColor="#6c6c6c"
+        android:textSize="@dimen/d15"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_theme_color">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d42"
+        android:background="@color/main_theme_color">
+
+        <ImageView
+            android:id="@+id/icon_back"
+            android:layout_width="@dimen/d16"
+            android:layout_height="@dimen/d16"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/d10"
+            android:src="@mipmap/btn_back" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/d4"
+            android:paddingTop="@dimen/d4">
+
+            <ImageView
+                android:id="@+id/iv_title_select"
+                android:layout_width="@dimen/d16"
+                android:layout_height="@dimen/d16"
+                android:layout_gravity="right|center_vertical"
+                android:paddingRight="@dimen/d4"
+                android:scaleType="centerInside"
+                android:src="@mipmap/ic_arrow_bottom" />
+
+            <Button
+                android:id="@+id/btn_title_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:maxWidth="@dimen/d128"
+                android:paddingBottom="@dimen/d2"
+                android:paddingLeft="@dimen/d4"
+                android:paddingRight="@dimen/d20"
+                android:paddingTop="@dimen/d2"
+                android:text="选择图片"
+                android:textColor="@color/main_status_white"
+                android:textSize="@dimen/d16" />
+
+        </FrameLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

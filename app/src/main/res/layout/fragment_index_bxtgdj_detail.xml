@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/fragment_detail_bar" />
+
+    <com.classic.common.MultipleStatusView
+        android:id="@+id/bxtgdj_detail_status_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyView="@layout/custom_empty_view"
+        app:errorView="@layout/custom_error_view"
+        app:loadingView="@layout/custom_loading_text"
+        app:noNetworkView="@layout/custom_no_network_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/main_status_white"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/d4">
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/detail_nsv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d0"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/d8"
+                android:paddingRight="@dimen/d8"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                tools:ignore="RtlHardcoded">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_main_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="#ff434343"
+                        android:textSize="@dimen/d18" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/d14">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/ll_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <android.support.v7.widget.AppCompatTextView
+                                    android:id="@+id/tv_type"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="比选公告"
+                                    android:textColor="@color/main_status_blue"
+                                    android:textSize="@dimen/d15" />
+
+                                <View
+                                    android:layout_width="@dimen/d1"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="@dimen/d4"
+                                    android:layout_marginLeft="@dimen/d6"
+                                    android:layout_marginRight="@dimen/d6"
+                                    android:layout_marginTop="@dimen/d4"
+                                    android:background="@color/main_status_red" />
+
+                            </LinearLayout>
+
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="项目编号:"
+                                android:textColor="@color/main_text_color"
+                                android:textSize="@dimen/d15" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_pu_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/d4"
+                                android:text=""
+                                android:textSize="@dimen/d15" />
+                        </LinearLayout>
+
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_main_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/d14"
+                            android:text="成都"
+                            android:textColor="#ff999999"
+                            android:textSize="@dimen/d15" />
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/d16">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:orientation="horizontal">
+
+                                <android.support.v7.widget.AppCompatTextView
+                                    android:id="@+id/tv_main_dead_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2017-1-1"
+                                    android:textColor="@color/status_text_color"
+                                    android:textSize="@dimen/d15" />
+
+                                <android.support.v7.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/d4"
+                                    android:text="截止"
+                                    android:textColor="@color/main_status_red"
+                                    android:textSize="@dimen/d15" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/d10">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:orientation="horizontal">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_main_pub_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2017-1-1"
+                                android:textColor="@color/status_text_color"
+                                android:textSize="@dimen/d15" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/d4"
+                                android:text="发布"
+                                android:textColor="@color/main_text_color"
+                                android:textSize="@dimen/d15" />
+
+                        </LinearLayout>
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d18"
+                        android:layout_marginTop="@dimen/d24"
+                        android:background="#f9eeeeee" />
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d20"
+                        android:lineSpacingMultiplier="1.4"
+                        android:text=""
+                        android:textSize="@dimen/d16" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d1"
+                        android:layout_marginTop="@dimen/d10"
+                        android:background="#eeeeee" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.4"
+                        android:paddingTop="@dimen/d10"
+                        android:text=""
+                        android:textSize="@dimen/d16" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d1"
+                        android:layout_marginTop="@dimen/d10"
+                        android:background="#eeeeee" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.4"
+                        android:paddingTop="@dimen/d10"
+                        android:text=""
+                        android:textSize="@dimen/d16" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="@dimen/d10"
+                        android:background="#eeeeee" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.4"
+                        android:paddingTop="@dimen/d10"
+                        android:text=""
+                        android:textSize="@dimen/d16" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d1"
+                        android:layout_marginTop="@dimen/d10"
+                        android:background="#eeeeee" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.4"
+                        android:paddingTop="@dimen/d10"
+                        android:text=""
+                        android:textSize="@dimen/d16" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d1"
+                        android:layout_marginTop="@dimen/d10"
+                        android:background="#eeeeee" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.4"
+                        android:paddingTop="@dimen/d10"
+                        android:text=""
+                        android:textSize="@dimen/d16" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d1"
+                        android:layout_marginTop="@dimen/d10"
+                        android:background="#eeeeee" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.4"
+                        android:paddingTop="@dimen/d10"
+                        android:text=""
+                        android:textSize="@dimen/d16" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/endSam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:lineSpacingMultiplier="1.4"
+                        android:paddingBottom="@dimen/d20"
+                        android:paddingRight="@dimen/d4"
+                        android:paddingTop="@dimen/d10"
+                        android:text=""
+                        android:textSize="@dimen/d16" />
+
+
+                    <include layout="@layout/share_item_bottom" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/d10"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/d16"
+                            android:layout_marginTop="@dimen/d16"
+                            android:background="#88eeeeee" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/d10"
+                            android:layout_marginTop="@dimen/d20"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="@dimen/d1"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="@dimen/d6"
+                                android:layout_marginLeft="@dimen/d6"
+                                android:layout_marginRight="@dimen/d6"
+                                android:layout_marginTop="@dimen/d6"
+                                android:background="@color/main_status_red" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="相关标讯"
+                                android:textColor="@color/main_text_color"
+                                android:textSize="@dimen/d16" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/d20"
+                            android:layout_marginLeft="@dimen/d16"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/atv_gz"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/d10"
+                                android:text="无"
+                                android:textColor="@color/main_text_dark_color"
+                                android:textSize="@dimen/d16" />
+
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/atv_jg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/d20"
+                                android:text="相关结果公告"
+                                android:textColor="@color/main_theme_color"
+                                android:textSize="@dimen/d16"
+                                android:visibility="gone" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+
+
+        </LinearLayout>
+    </com.classic.common.MultipleStatusView>
+
+
+</LinearLayout>

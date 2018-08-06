@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d48"
+        android:layout_marginLeft="@dimen/d30"
+        android:layout_marginRight="@dimen/d30"
+        android:layout_marginTop="@dimen/d18"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_width="@dimen/d22"
+            android:layout_height="@dimen/d22"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/d4"
+            android:src="@mipmap/phone_num" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_retrieve_tel"
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入您的手机号码"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:minLines="1"
+            android:paddingLeft="@dimen/d8"
+            android:textColor="#000000"
+            android:textColorHint="#c9c9c9"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/d16" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d4"
+        android:layout_marginLeft="@dimen/d30"
+        android:layout_marginRight="@dimen/d30"
+        android:background="#f9eeeeee" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d48"
+        android:layout_marginLeft="@dimen/d30"
+        android:layout_marginRight="@dimen/d16"
+        android:layout_marginTop="@dimen/d2"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_retrieve_code_input"
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minLines="1"
+            android:paddingLeft="@dimen/d8"
+            android:textColor="#000000"
+            android:textColorHint="#c9c9c9"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/d16" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/retrieve_sms_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/d16"
+            android:alpha="0.4"
+            android:background="@drawable/bg_register_call_sms"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/d6"
+            android:paddingLeft="@dimen/d8"
+            android:paddingRight="@dimen/d8"
+            android:paddingTop="@dimen/d6"
+            android:text="@string/register_sms_hint"
+            android:textColorHint="#c9c9c9"
+            android:textSize="@dimen/d14" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d4"
+        android:layout_marginLeft="@dimen/d30"
+        android:layout_marginRight="@dimen/d30"
+        android:background="#f9eeeeee" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_retrieve_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d38"
+        android:layout_marginLeft="@dimen/d30"
+        android:layout_marginRight="@dimen/d30"
+        android:layout_marginTop="@dimen/d20"
+        android:background="@drawable/button_selected"
+        android:gravity="center"
+        android:text="登 陆"
+        android:textColor="@color/main_status_white"
+        android:textSize="@dimen/d16" />
+
+</LinearLayout>

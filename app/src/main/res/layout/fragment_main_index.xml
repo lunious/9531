@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_height"
+        android:background="@color/main_theme_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40"
+        android:layout_gravity="center"
+        android:background="@color/main_theme_color"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/d4"
+            android:text="鲁班标讯通"
+            android:textColor="@color/main_status_white"
+            android:textSize="@dimen/s17" />
+
+        <LinearLayout
+            android:id="@+id/ll_search"
+            android:layout_width="@dimen/d0"
+            android:layout_height="@dimen/d26"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:background="@drawable/bg_search">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/d12"
+                    android:layout_height="@dimen/d12"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/img_search" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/d2"
+                    android:text="输入你感兴趣的公告名称"
+                    android:textColor="#9d9d9d"
+                    android:textSize="@dimen/s13" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_location"
+            android:layout_width="@dimen/d0"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+
+            <ImageView
+                android:layout_width="@dimen/d16"
+                android:layout_height="@dimen/d16"
+                android:layout_gravity="center"
+                android:paddingLeft="@dimen/d4"
+                android:paddingTop="@dimen/d1"
+                android:src="@mipmap/location" />
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/d1"
+                android:text="四川"
+                android:textColor="@color/main_status_white"
+                android:textSize="@dimen/s14" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d36"
+        android:background="#F6F6F6"
+        android:orientation="horizontal">
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/index_stl_tab"
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            android:background="@color/main_status_white"
+            tl:tl_indicator_color="@color/main_theme_color"
+            tl:tl_indicator_height="@dimen/d2"
+            tl:tl_indicator_width_equal_title="true"
+            tl:tl_tab_padding="@dimen/d10"
+            tl:tl_textAllCaps="true"
+            tl:tl_textSelectColor="@color/main_theme_color"
+            tl:tl_textUnselectColor="#6c6c6c"
+            tl:tl_textsize="@dimen/s16" />
+
+        <LinearLayout
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/main_status_white"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/line_index" />
+
+            <ImageView
+                android:id="@+id/iv_add"
+                android:layout_width="@dimen/d36"
+                android:layout_height="@dimen/d36"
+                android:contentDescription="@null"
+                android:paddingBottom="@dimen/d10"
+                android:paddingLeft="@dimen/d10"
+                android:paddingRight="@dimen/d6"
+                android:paddingTop="@dimen/d10"
+                android:src="@mipmap/ic_subscribe" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#dddddd" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/index_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_status_white" />
+
+</LinearLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/d6"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_index_title"
+                android:layout_width="@dimen/d0"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d6"
+                android:layout_marginRight="@dimen/d4"
+                android:layout_weight="9"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="大英县隆盛镇五龙寨村农田水利项目"
+                android:textColor="#ff434343"
+                android:textSize="@dimen/s15" />
+
+
+            <ImageView
+                android:id="@+id/iv_status"
+                android:layout_width="@dimen/d32"
+                android:layout_height="@dimen/d32"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_temp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d16">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/d6"
+                    android:layout_marginRight="@dimen/d4"
+                    android:orientation="horizontal">
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_index_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="正在报名"
+                        android:textColor="#1196db"
+                        android:textSize="@dimen/s13" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d4"
+                    android:orientation="horizontal">
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_index_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/d8"
+                        android:text="2017-12-01"
+                        android:textColor="#ffa0a0a0"
+                        android:textSize="@dimen/s14" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_index_time_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="截止"
+                        android:textColor="#cccc33"
+                        android:textSize="@dimen/s13" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d4"
+                android:layout_marginLeft="@dimen/d6"
+                android:layout_marginTop="@dimen/d4"
+                android:background="#ffffff">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_index_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:text="遂宁-大英县"
+                        android:textColor="#ff999999"
+                        android:textSize="@dimen/s13" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/d4"
+                    android:orientation="horizontal">
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_index_pub_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/d8"
+                        android:text="2017-12-01"
+                        android:textColor="#ffa0a0a0"
+                        android:textSize="@dimen/s14" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_index_pub_time_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="发布"
+                        android:textColor="@color/main_theme_color"
+                        android:textSize="@dimen/s13" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/p1"
+            android:layout_marginLeft="@dimen/d6"
+            android:layout_marginTop="@dimen/d6"
+            android:background="@color/dark_view" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_status_white"
+    android:orientation="vertical">
+
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="分享到"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/d12"
+        android:paddingBottom="@dimen/d12"
+        android:textSize="@dimen/s14"
+        android:textColor="@color/main_text_color"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/p1"
+        android:layout_marginLeft="@dimen/d16"
+        android:layout_marginRight="@dimen/d16"
+        android:background="@color/main_background" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/share_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/d14"
+        android:layout_marginRight="@dimen/d14"
+        android:paddingBottom="@dimen/d12"
+        android:paddingTop="@dimen/d14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d8"
+        android:background="@color/main_bg_color" />
+
+
+    <LinearLayout
+        android:id="@+id/cancel_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_status_white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/d10"
+            android:layout_marginTop="@dimen/d10"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/main_status_red"
+            android:textSize="@dimen/d16" />
+    </LinearLayout>
+
+
+</LinearLayout>

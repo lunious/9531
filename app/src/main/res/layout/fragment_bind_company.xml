@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/fragment_main_bar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d20"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d42"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/d8"
+        android:paddingLeft="@dimen/d4"
+        android:paddingRight="@dimen/d8"
+        android:paddingTop="@dimen/d8">
+
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/view_bind"
+            android:layout_width="@dimen/d0"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:background="@drawable/bg_searchbox"
+            android:textColor="#ff434343"
+            android:textSize="@dimen/d14"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@color/transparent"
+            app:queryHint="请输入要绑定的企业名称" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d10"
+        android:background="#eeeeee" />
+
+    <com.classic.common.MultipleStatusView
+        android:id="@+id/bind_company_status_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyView="@layout/custom_empty_view"
+        app:errorView="@layout/custom_error_view"
+        app:loadingView="@layout/custom_loading_text"
+        app:noNetworkView="@layout/custom_no_network_view">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/bind_company_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none"/>
+    </com.classic.common.MultipleStatusView>
+
+
+</LinearLayout>

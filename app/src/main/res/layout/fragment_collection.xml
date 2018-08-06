@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_status_white"
+    android:orientation="vertical">
+
+    <include layout="@layout/fragment_main_bar" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_show"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/d80"
+        android:gravity="center_horizontal"
+        android:background="#eeeeee"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/duihua"
+            android:layout_marginLeft="@dimen/d60"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/nologin"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_to_login"
+            android:layout_marginTop="@dimen/d10"
+            android:layout_width="@dimen/d110"
+            android:layout_height="@dimen/d38"
+            android:text="立即登陆"
+            android:textColor="@color/main_theme_color"
+            android:textSize="@dimen/d18"
+            android:background="@drawable/bg_login_button"
+            android:layout_gravity="center_horizontal|center_vertical" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:background="@color/main_status_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

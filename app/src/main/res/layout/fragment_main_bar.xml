@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_height"
+        android:background="@color/main_theme_color" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40"
+        android:background="@color/main_theme_color"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_iv_back"
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:visibility="invisible">
+
+            <ImageView
+                android:layout_width="@dimen/d16"
+                android:layout_height="@dimen/d16"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/d2"
+                android:background="#00ffffff"
+                android:src="@mipmap/btn_back" />
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/main_bar_name"
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="10"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/main_status_white"
+            android:textSize="@dimen/d18"
+            tools:text="鲁班标讯通" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_message"
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:visibility="invisible">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:layout_width="@dimen/d18"
+                    android:layout_height="@dimen/d18"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/message" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/message_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|top"
+                    android:layout_marginLeft="@dimen/d24"
+                    android:background="@drawable/ic_red_dot"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/d2"
+                    android:paddingRight="@dimen/d2"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/main_status_white"
+                    android:textSize="@dimen/d9"
+                    android:visibility="invisible" />
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_height"
+        android:background="@color/main_theme_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_status_white"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d36"
+            android:layout_marginTop="@dimen/d4"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/d0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/main_status_white"
+                    android:drawableEnd="@drawable/icon_down"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="@dimen/d5"
+                    android:text="地区"
+                    android:textSize="@dimen/s15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/d1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d8"
+                android:layout_marginTop="@dimen/d8"
+                android:background="#cccccc" />
+
+            <LinearLayout
+                android:layout_width="@dimen/d0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/main_status_white"
+                    android:drawableEnd="@drawable/icon_down"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="@dimen/d5"
+                    android:text="类型"
+                    android:textSize="@dimen/s15" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/p1"
+            android:background="#cccccc"
+            android:paddingBottom="@dimen/d10"
+            android:paddingTop="@dimen/d10" />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/search_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_status_white"
+        android:orientation="vertical">
+
+        <com.classic.common.MultipleStatusView
+            android:id="@+id/result_search_list_status_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:emptyView="@layout/custom_empty_view"
+            app:errorView="@layout/custom_error_view"
+            app:loadingView="@layout/custom_loading_index_list"
+            app:noNetworkView="@layout/custom_no_network_view">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/search_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/main_status_white"
+                android:overScrollMode="never"
+                android:scrollbars="none"/>
+        </com.classic.common.MultipleStatusView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+</LinearLayout>

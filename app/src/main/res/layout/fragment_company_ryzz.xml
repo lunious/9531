@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/d6"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/d6"
+        android:paddingLeft="@dimen/d8"
+        android:paddingRight="@dimen/d8"
+        android:paddingTop="@dimen/d6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_ryzz_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="周杰伦"
+                android:textColor="#ff6c6c6c"
+                android:textSize="@dimen/d15" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_lx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/d10"
+                android:text="歌手__演员"
+                android:textColor="#ff6c6c6c"
+                android:textSize="@dimen/d15" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/d6">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="专业:"
+                android:textColor="#ff9c9c9c"
+                android:textSize="@dimen/d12" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_ryzy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/d10"
+                android:text="唱歌跳舞"
+                android:textColor="#ff9c9c9c"
+                android:textSize="@dimen/d12" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d1"
+            android:layout_below="@+id/tv_item_time"
+            android:layout_marginTop="@dimen/d12"
+            android:background="@color/dark_view" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

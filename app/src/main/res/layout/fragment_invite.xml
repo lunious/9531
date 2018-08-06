@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_height"
+        android:background="@color/main_theme_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40"
+        android:background="@color/main_theme_color"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_back"
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/d4"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_width="@dimen/d16"
+                android:layout_height="@dimen/d16"
+                android:src="@mipmap/btn_back" />
+
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="8"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="我的邀请"
+            android:textColor="@color/main_status_white"
+            android:textSize="@dimen/d18" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_wenhao"
+            android:layout_width="@dimen/d0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="visible">
+
+
+            <ImageView
+                android:layout_width="@dimen/d18"
+                android:layout_height="@dimen/d18"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_wenhao" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/d20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/d10"
+            android:paddingTop="@dimen/d10">
+
+            <ImageView
+                android:layout_width="@dimen/d160"
+                android:layout_height="@dimen/d160"
+                android:src="@mipmap/erweima" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="扫描二维码注册" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/d16"
+        android:layout_marginRight="@dimen/d16"
+        android:layout_marginTop="@dimen/d20"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/btn_wyqdyh"
+            android:layout_width="@dimen/d0"
+            android:layout_height="@dimen/d40"
+            android:layout_weight="1"
+            android:background="@drawable/button_selected"
+            android:gravity="center"
+            android:text="我邀请的用户"
+            android:textColor="@color/main_status_white"
+            android:layout_marginRight="@dimen/d16"
+            android:textSize="@dimen/d16" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/btn_msyqhy"
+            android:layout_width="@dimen/d0"
+            android:layout_height="@dimen/d40"
+            android:layout_weight="1"
+            android:background="@drawable/button_selected"
+            android:gravity="center"
+            android:text="马上邀请好友"
+            android:layout_marginLeft="@dimen/d16"
+            android:textColor="@color/main_status_white"
+            android:textSize="@dimen/d16" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/d24"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="邀请码："
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/s16"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lbjyyqm"
+            android:layout_marginLeft="@dimen/d10"
+            android:textColor="@color/main_status_blue"
+            android:textSize="@dimen/s16"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="（长按复制）"
+            android:layout_marginLeft="@dimen/d10"
+            android:textColor="@color/main_text_light_color"
+            android:textSize="@dimen/s16"/>
+
+    </LinearLayout>
+</LinearLayout>

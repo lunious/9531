@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main_theme_color">#21a9ff</color>
+
+    <color name="colorPrimary">#21a9ff</color>
+    <color name="colorPrimaryDark">#21a9ff</color>
+    <color name="colorAccent">#21a9ff</color>
+
+    <color name="tab_icon_unselect">#c6c6c6</color>
+    <color name="tab_text_unselect">#6c6c6c</color>
+    <color name="black">#FFFFFF</color>
+    <color name="light_blue">#00bfda</color>
+    <color name="line">#eeeeee</color>
+    <color name="view">#eeeeee</color>
+    <color name="dark_view">#dddddd</color>
+    <color name="main_background">#eeeeee</color>
+
+    <color name="toast_background">#66000000</color>
+    <color name="bg_press">#ebebeb</color>
+    <color name="transparent">#00000000</color>
+    <color name="search_hint">#9d9d9d</color>
+    <color name="status_text_color">#6c6c6c</color>
+    <color name="main_status_blue">#3399ff</color>
+    <color name="main_status_red">#FF6666</color>
+    <color name="main_status_light_gray">#fefefe</color>
+    <color name="main_status_gray">#eeeeee</color>
+    <color name="main_status_dark_gray">#dddddd</color>
+    <color name="main_status_white">#FFFFFF</color>
+    <color name="main_text_color">#3c3c3c</color>
+    <color name="main_text_light_color">#6c6c6c</color>
+    <color name="main_text_dark_color">#9c9c9c</color>
+    <color name="main_bg_color">#55eeeeee</color>
+    <color name="main_empty_color">#F6F6F6</color>
+
+    <color name="main_status_transparent">#00000000</color>
+
+    <color name="black_alpha_48">#30000000</color>
+    <color name="trans">#00000000</color>
+    <color name="white_alpha_16">#10ffffff</color>
+    <color name="white_alpha_240">#f0ffffff</color>
+
+    //侧滑颜色
+    <color name="red_normal">#FF0000</color>
+    <color name="red_pressed">#FF6666</color>
+
+    //定位相关
+    <color name="cp_color_gray_light">#cdcdcd</color>
+    <color name="cp_color_gray">#999999</color>
+    <color name="cp_color_gray_deep">#666666</color>
+    <color name="cp_color_gray_dark">#333333</color>
+    <color name="cp_color_section_bg">#EDEDED</color>
+    <color name="cp_color_grid_item_bg">#f5f5f5</color>
+
+
+</resources>

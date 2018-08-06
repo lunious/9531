@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="lib_update_app_files"
+        path="Android/data/com.lubanjianye.biaoxuntong/" />
+    <external-path
+        name="external_storage_root"
+        path="." />
+    <files-path
+        name="images"
+        path="images/" />
+    <files-path
+        name="docs"
+        path="docs/" />
+</paths>

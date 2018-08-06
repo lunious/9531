@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_status_white"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/fragment_main_bar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="@dimen/d5"
+            android:text="姓        名："
+            android:textColor="#ff434343"
+            android:textSize="@dimen/d16" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_ryname"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d40"
+            android:background="@null"
+            android:hint="请输入人员姓名"
+            android:paddingLeft="@dimen/d10"
+            android:textColor="@color/main_theme_color"
+            android:textSize="@dimen/d15" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d5"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="@dimen/d5"
+            android:text="身份证号："
+            android:textColor="#ff434343"
+            android:textSize="@dimen/d16" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_sfzh"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d40"
+            android:background="@null"
+            android:hint="请输入身份证号码"
+            android:paddingLeft="@dimen/d10"
+            android:textColor="@color/main_theme_color"
+            android:textSize="@dimen/d15" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d5"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="@dimen/d5"
+            android:text="证  书  号："
+            android:textColor="#ff434343"
+            android:textSize="@dimen/d16" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_zsh"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d40"
+            android:background="@null"
+            android:hint="请输入证书号"
+            android:paddingLeft="@dimen/d10"
+            android:textColor="@color/main_theme_color"
+            android:textSize="@dimen/d15" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d5"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d40"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="@dimen/d5"
+            android:text="有  效  期："
+            android:textColor="#ff434343"
+            android:textSize="@dimen/d16" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/et_start_time"
+            android:layout_width="@dimen/d0"
+            android:layout_height="@dimen/d40"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:hint="开始时间"
+            android:paddingLeft="@dimen/d10"
+            android:textColor="@color/main_theme_color"
+            android:textSize="@dimen/d15" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="@dimen/d0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingLeft="@dimen/d10"
+            android:text="至"
+            android:textColor="#ff434343"
+            android:textSize="@dimen/d16" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/et_end_time"
+            android:layout_width="@dimen/d0"
+            android:layout_height="@dimen/d40"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:hint="结束时间"
+            android:paddingLeft="@dimen/d10"
+            android:textColor="@color/main_theme_color"
+            android:textSize="@dimen/d15" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_status_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/d10">
+
+            <ImageView
+                android:layout_width="@dimen/d14"
+                android:layout_height="@dimen/d14"
+                android:layout_marginEnd="@dimen/d8"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_choose"
+                tools:ignore="RtlHardcoded" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择人员资质条件"
+                android:textColor="#6c6c6c"
+                android:textSize="@dimen/d15" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(条件可左右滑动)"
+                android:textColor="#6c6c6c"
+                android:paddingLeft="@dimen/d4"
+                android:textSize="@dimen/d12" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eeeeee" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d36"
+            android:layout_marginBottom="@dimen/d4"
+            android:layout_marginLeft="@dimen/d4"
+            android:layout_marginTop="@dimen/d4"
+            android:background="@color/main_status_white"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_zzlx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_help_category_tv_bg"
+                    android:drawableRight="@mipmap/down"
+                    android:drawablePadding="@dimen/d4"
+                    android:paddingEnd="@dimen/d6"
+                    android:paddingStart="@dimen/d6"
+                    android:textColor="#6d6d6d"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:text="资质类别"
+                    android:textSize="@dimen/d15" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_mc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_help_category_tv_bg"
+                    android:drawableRight="@mipmap/down"
+                    android:drawablePadding="@dimen/d4"
+                    android:paddingEnd="@dimen/d6"
+                    android:paddingStart="@dimen/d6"
+                    android:textColor="#6d6d6d"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:text="名称"
+                    android:textSize="@dimen/d15" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_mc_dj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_help_category_tv_bg"
+                    android:drawableRight="@mipmap/down"
+                    android:drawablePadding="@dimen/d4"
+                    android:paddingEnd="@dimen/d6"
+                    android:paddingStart="@dimen/d6"
+                    android:textColor="#6d6d6d"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:text="名称/等级"
+                    android:textSize="@dimen/d15" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_zy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_help_category_tv_bg"
+                    android:drawableRight="@mipmap/down"
+                    android:drawablePadding="@dimen/d4"
+                    android:paddingEnd="@dimen/d6"
+                    android:paddingStart="@dimen/d6"
+                    android:textColor="#6d6d6d"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:text="专业"
+                    android:textSize="@dimen/d15" />
+
+
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/d10"
+                    android:layout_marginRight="@dimen/d10"
+                    android:background="@drawable/button_selected"
+                    android:paddingEnd="@dimen/d6"
+                    android:paddingStart="@dimen/d6"
+                    android:text="添加"
+                    android:textColor="@color/main_status_white"
+                    android:textSize="@dimen/d15" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d1"
+            android:layout_marginTop="@dimen/d5"
+            android:background="#eeeeee" />
+
+        <LinearLayout
+            android:id="@+id/lll"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d50"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/d20"
+            android:visibility="invisible">
+
+            <HorizontalScrollView
+                android:layout_width="@dimen/d0"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/text01"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text=""
+                        android:textSize="@dimen/d15" />
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <ImageView
+                android:id="@+id/iv1"
+                android:layout_width="@dimen/d0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/d4"
+                android:layout_weight="1"
+                android:src="@mipmap/delect" />
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/btn_update"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d40"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/d14"
+                android:layout_marginLeft="@dimen/d5"
+                android:layout_marginRight="@dimen/d5"
+                android:background="@drawable/button_selected"
+                android:text="提  交"
+                android:gravity="center"
+                android:textColor="@color/main_status_white"
+                android:textSize="@dimen/d20"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

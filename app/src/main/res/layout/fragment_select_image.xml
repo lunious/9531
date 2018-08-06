@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/select_image_bar" />
+
+
+    <com.classic.common.MultipleStatusView
+        android:id="@+id/select_image_status_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyView="@layout/custom_empty_view"
+        app:errorView="@layout/custom_error_view"
+        app:loadingView="@layout/custom_loading_text"
+        app:noNetworkView="@layout/custom_no_network_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="1dp"
+                android:scrollbars="none" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#50000000" />
+
+            <FrameLayout
+                android:id="@+id/lay_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:paddingBottom="@dimen/d8"
+                android:paddingLeft="@dimen/d16"
+                android:paddingRight="@dimen/d16"
+                android:paddingTop="@dimen/d8">
+
+                <Button
+                    android:id="@+id/btn_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/d28"
+                    android:layout_gravity="left"
+                    android:background="@drawable/btn_select_image_preview_bg_selector"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/d4"
+                    android:paddingLeft="@dimen/d12"
+                    android:paddingRight="@dimen/d12"
+                    android:paddingTop="@dimen/d4"
+                    android:text="阅览"
+                    android:textColor="@color/btn_select_image_preview_bg_selector"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn_done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/d28"
+                    android:layout_gravity="right"
+                    android:background="@drawable/btn_select_image_done_bg_selector"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/d4"
+                    android:paddingLeft="@dimen/d12"
+                    android:paddingRight="@dimen/d12"
+                    android:paddingTop="@dimen/d4"
+                    android:text="完成"
+                    android:textColor="@color/btn_select_image_done_bg_selector"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </com.classic.common.MultipleStatusView>
+
+</LinearLayout>

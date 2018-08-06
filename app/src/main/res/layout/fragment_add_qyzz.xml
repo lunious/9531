@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_status_white"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/fragment_main_bar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d14"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_status_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/d10">
+
+            <ImageView
+                android:layout_width="@dimen/d14"
+                android:layout_height="@dimen/d14"
+                android:layout_marginEnd="@dimen/d8"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_choose"
+                tools:ignore="RtlHardcoded" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置企业资质条件"
+                android:textColor="#6c6c6c"
+                android:textSize="@dimen/d15" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(条件可左右滑动)"
+                android:textColor="#6c6c6c"
+                android:paddingLeft="@dimen/d4"
+                android:textSize="@dimen/d12" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d1"
+            android:background="#eeeeee" />
+
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d36"
+        android:layout_marginBottom="@dimen/d4"
+        android:layout_marginLeft="@dimen/d4"
+        android:layout_marginTop="@dimen/d4"
+        android:background="@color/main_status_white"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_zzlx"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_help_category_tv_bg"
+                android:drawableRight="@mipmap/down"
+                android:drawablePadding="@dimen/d4"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/d6"
+                android:paddingStart="@dimen/d6"
+                android:text="资质类型"
+                android:textColor="#6d6d6d"
+                android:textSize="@dimen/d15" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_dl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_weight="1"
+                android:background="@drawable/shape_help_category_tv_bg"
+                android:drawableRight="@mipmap/down"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/d6"
+                android:paddingStart="@dimen/d6"
+                android:drawablePadding="@dimen/d4"
+                android:text="大类"
+                android:textColor="#6d6d6d"
+                android:textSize="@dimen/d15" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_xl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_weight="1"
+                android:background="@drawable/shape_help_category_tv_bg"
+                android:drawableRight="@mipmap/down"
+                android:drawablePadding="@dimen/d4"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/d6"
+                android:paddingStart="@dimen/d6"
+                android:text="小类"
+                android:textColor="#6d6d6d"
+                android:textSize="@dimen/d15" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_zy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_weight="1"
+                android:background="@drawable/shape_help_category_tv_bg"
+                android:drawableRight="@mipmap/down"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/d6"
+                android:paddingStart="@dimen/d6"
+                android:drawablePadding="@dimen/d4"
+                android:text="专业"
+                android:textColor="#6d6d6d"
+                android:textSize="@dimen/d15" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_dj"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_weight="1"
+                android:background="@drawable/shape_help_category_tv_bg"
+                android:drawableRight="@mipmap/down"
+                android:drawablePadding="@dimen/d4"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/d6"
+                android:paddingStart="@dimen/d6"
+                android:text="等级"
+                android:textColor="#6d6d6d"
+                android:textSize="@dimen/d15" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_qy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_weight="1"
+                android:background="@drawable/shape_help_category_tv_bg"
+                android:drawableRight="@mipmap/down"
+                android:drawablePadding="@dimen/d4"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/d6"
+                android:paddingStart="@dimen/d6"
+                android:text="地区范围"
+                android:textColor="#6d6d6d"
+                android:textSize="@dimen/d15" />
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_marginRight="@dimen/d10"
+                android:background="@drawable/button_selected"
+                android:paddingEnd="@dimen/d6"
+                android:paddingStart="@dimen/d6"
+                android:gravity="center"
+                android:text="添加"
+                android:textColor="@color/main_status_white"
+                android:textSize="@dimen/d15" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d1"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d0"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d50"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/d20"
+                android:visibility="invisible">
+
+                <HorizontalScrollView
+                    android:layout_width="@dimen/d0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/text01"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text=""
+                            android:textSize="@dimen/d16" />
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="@dimen/d0"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/d4"
+                    android:layout_weight="1"
+                    android:src="@mipmap/delect" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d40"
+            android:layout_below="@+id/ll_jieguo"
+            android:layout_marginLeft="@dimen/d10"
+            android:layout_marginRight="@dimen/d10"
+            android:layout_marginTop="@dimen/d180"
+            android:background="@drawable/button_selected"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/main_status_white"
+            android:textSize="@dimen/d20"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d20"
+            android:background="#eeeeee"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d5"
+                android:gravity="center"
+                android:text="温馨提示！"
+                android:textColor="@color/main_theme_color" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="6dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="       个人添加的企业资质，只会用于企业的资质维护，用来更新维护企业遗漏或多于的资质信息，并不会影响到其他用户的查询结果，可放心添加！" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

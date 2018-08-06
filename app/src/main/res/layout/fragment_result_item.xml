@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/d6"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/d6"
+        android:layout_marginLeft="@dimen/d6"
+        android:layout_marginRight="@dimen/d4"
+        android:layout_marginTop="@dimen/d4"
+        android:background="#ffffff">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="This is main title."
+            android:textColor="#ff434343"
+            android:textSize="@dimen/s15" />
+
+        <LinearLayout
+            android:id="@+id/linear_temp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_item_title"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_item_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/d38"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="#ff999999"
+                android:textSize="@dimen/s13" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/linear_temp"
+            android:layout_marginTop="@dimen/d16">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/d14"
+                    android:layout_height="@dimen/d14"
+                    android:paddingTop="@dimen/d1"
+                    android:src="@mipmap/search_icon" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_item_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/d4"
+                    android:layout_marginRight="@dimen/d4"
+                    android:text="2018-1-1"
+                    android:textColor="#ffa0a0a0"
+                    android:textSize="@dimen/s14" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/p1"
+            android:layout_below="@+id/rl_time"
+            android:layout_marginTop="@dimen/d6"
+            android:background="@color/dark_view" />
+
+    </RelativeLayout>
+
+</LinearLayout>

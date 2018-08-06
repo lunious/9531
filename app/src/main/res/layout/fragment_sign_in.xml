@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/d12">
+
+        <include layout="@layout/fragment_main_bar" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_theme_color"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/d72"
+                android:layout_height="@dimen/d72"
+                android:src="@mipmap/moren_touxiang" />
+        </LinearLayout>
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/login_stl_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d42"
+            android:background="@color/main_theme_color"
+            tl:tl_divider_color="@color/main_status_white"
+            tl:tl_divider_padding="@dimen/d12"
+            tl:tl_divider_width="2px"
+            tl:tl_indicator_color="@color/main_status_white"
+            tl:tl_indicator_height="@dimen/d4"
+            tl:tl_indicator_style="TRIANGLE"
+            tl:tl_indicator_width="@dimen/d12"
+            tl:tl_indicator_width_equal_title="true"
+            tl:tl_tab_padding="@dimen/d6"
+            tl:tl_tab_space_equal="true"
+            tl:tl_textAllCaps="true"
+            tl:tl_textSelectColor="@color/main_status_white"
+            tl:tl_textUnselectColor="@color/main_status_white"
+            tl:tl_textsize="@dimen/d16" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/result_vp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d200" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d48"
+            android:layout_marginLeft="@dimen/d24"
+            android:layout_marginRight="@dimen/d24"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/bt_login_register"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:paddingBottom="@dimen/d4"
+                android:paddingLeft="@dimen/d4"
+                android:paddingTop="@dimen/d2"
+                android:text="立即注册>>"
+                android:textColor="@color/main_theme_color"
+                android:textSize="@dimen/d15" />
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_login_forget_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingBottom="@dimen/d4"
+                android:paddingLeft="@dimen/d4"
+                android:paddingTop="@dimen/d2"
+                android:text="忘记密码？"
+                android:textColor="@color/search_hint"
+                android:textSize="@dimen/d15" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/d10"
+            android:paddingRight="@dimen/d10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/d10"
+                android:layout_marginLeft="@dimen/d10"
+                android:layout_marginRight="@dimen/d10"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/d0"
+                    android:layout_height="1px"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="#dddddd" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="@dimen/d0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="其它登陆方式"
+                    android:textColor="#cacaca"
+                    android:textSize="@dimen/d12" />
+
+                <View
+                    android:layout_width="@dimen/d0"
+                    android:layout_height="1px"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="#dddddd" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_login_qq"
+                    android:layout_width="@dimen/d0"
+                    android:layout_height="@dimen/d38"
+                    android:layout_marginLeft="@dimen/d10"
+                    android:layout_marginRight="@dimen/d16"
+                    android:layout_marginTop="@dimen/d20"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_other_login"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/d18"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:scaleType="centerInside"
+                        android:src="@mipmap/ic_login_3party_qq" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/d8"
+                        android:gravity="center"
+                        android:text="QQ登录"
+                        android:textColor="@color/main_status_blue"
+                        android:textSize="@dimen/d16" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_login_wx"
+                    android:layout_width="@dimen/d0"
+                    android:layout_height="@dimen/d38"
+                    android:layout_marginLeft="@dimen/d16"
+                    android:layout_marginRight="@dimen/d10"
+                    android:layout_marginTop="@dimen/d20"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_other_login"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/d18"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@null"
+                        android:scaleType="centerInside"
+                        android:src="@mipmap/ic_login_3party_wechat" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/d8"
+                        android:gravity="center"
+                        android:text="微信登录"
+                        android:textColor="@color/main_status_blue"
+                        android:textSize="@dimen/d16" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

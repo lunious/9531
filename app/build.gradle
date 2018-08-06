@@ -1,0 +1,121 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId "com.lubanjianye.biaoxuntong"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 27
+        versionName "2.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'arm64-v8a', 'armeabi' , 'arm64-v7a','x86' , 'x86_64'
+        }
+        manifestPlaceholders = [
+                qq_id           : "1106195613",
+                GETUI_APP_ID    : "xDFIE5aoNL6ADZ2vLwRhf",
+                GETUI_APP_KEY   : "vhht61APrg8nXk3kMLiGp8",
+                GETUI_APP_SECRET: "RHeEO6kolJ9jMgtk21mWTA",
+                PACKAGE_NAME    : "com.lubanjianye.biaoxuntong"
+        ]
+        //添加支持ARouter
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []
+        }
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //Android Support包
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:multidex:1.0.3'
+    //Fragmentation依赖
+    implementation 'me.yokeyword:fragmentation:1.3.2'
+    implementation 'me.yokeyword:fragmentation-swipeback:1.3.2'
+    //butterknife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //ARouter
+    implementation 'com.alibaba:arouter-api:1.3.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    //EventBus依赖
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    //fastjson依赖
+    implementation 'com.alibaba:fastjson:1.2.47'
+    //数据库依赖
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
+    implementation 'org.greenrobot:greendao:3.2.2'
+    //BaseRecyclerViewAdapterHelper依赖
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.32'
+    //圆形图片
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    //Banner依赖
+    implementation 'com.youth.banner:banner:1.4.10'
+    //Glide依赖
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    //FlycoTabLayout依赖
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //MultipleStatusView空白页
+    implementation 'com.classic.common:multiple-status-view:1.3'
+    //AVLoadingIndicatorView依赖(加载动画)
+    implementation 'com.wang.avi:library:2.1.3'
+    //ShareUtil
+    implementation 'me.shaohui.shareutil:shareutil:1.3.8'
+    //推送依赖
+    implementation 'com.github.joyrun.MixPush:client-core:1.2.0' //必填
+    implementation 'com.github.joyrun.MixPush:client-getui:1.2.0' // 个推
+    //easypermissions依赖
+    implementation 'pub.devrel:easypermissions:1.2.0'
+    //okhttp-OkGo
+    implementation 'com.lzy.net:okgo:3.0.4'
+    //SmartRefreshLayout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
+    //SwipeRecyclerView
+    implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
+    //ImmersionBar
+    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
+    //AgentWeb
+    implementation 'com.just.agentweb:agentweb:4.0.2'
+    //GSON
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    //flowlayout
+    implementation 'cn.lankton:flowlayout:3.1.0'
+    //SpinKit
+    implementation 'com.github.ybq:Android-SpinKit:1.1.0'
+    //subsampling-scale-image-view
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
+
+}

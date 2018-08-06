@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/lib_update_app_top_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lib_update_app_info_bg"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="版本号：1.0.8"
+                android:textColor="#666"
+                android:textSize="12dp" />
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="更新内容"
+                        android:textColor="@color/main_text_color"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/tv_update_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.4"
+                        android:paddingLeft="@dimen/d14"
+                        android:paddingTop="@dimen/d4"
+                        android:text="1，xxxxxxxx\n2，ooooooooo"
+                        android:textColor="#666"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d6"
+                android:layout_marginTop="@dimen/d16">
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/btn_ignore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/d10"
+                    android:background="@drawable/update_ignore"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/d4"
+                    android:paddingLeft="@dimen/d8"
+                    android:paddingRight="@dimen/d8"
+                    android:paddingTop="@dimen/d4"
+                    android:text="下次再说"
+                    android:textColor="@color/main_status_white"
+                    android:textSize="@dimen/d14" />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/btn_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="@dimen/d10"
+                    android:background="@drawable/update_ok"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/d4"
+                    android:paddingLeft="@dimen/d8"
+                    android:paddingRight="@dimen/d8"
+                    android:paddingTop="@dimen/d4"
+                    android:text="立即升级"
+                    android:textColor="@color/main_status_white"
+                    android:textSize="@dimen/d14" />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/atv_wait"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/d2"
+                    android:paddingLeft="@dimen/d8"
+                    android:paddingRight="@dimen/d8"
+                    android:paddingTop="@dimen/d2"
+                    android:text="新版本正在路上，请稍候！"
+                    android:textColor="@color/light_blue"
+                    android:textSize="@dimen/d14"
+                    android:visibility="gone" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_ignore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="忽略此版本"
+                android:textColor="#666"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+
+            <com.lubanjianye.biaoxuntong.ui.update.view.NumberProgressBar
+                android:id="@+id/npb"
+                style="@style/UpdateAppNumberProgressBar_Red"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="1dp"
+                android:layout_height="42dp"
+                android:background="#d8d8d8"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="@dimen/d24"
+                android:layout_height="@dimen/d24"
+                android:src="@mipmap/lib_update_app_close" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
