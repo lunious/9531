@@ -32,6 +32,9 @@ import com.lubanjianye.biaoxuntong.base.BaseFragment1;
 import com.lubanjianye.biaoxuntong.bean.TabEntity;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
+import com.lubanjianye.biaoxuntong.pay.PayHelper;
+import com.lubanjianye.biaoxuntong.pay.PayResultCallBack;
+import com.lubanjianye.biaoxuntong.pay.WXPayParam;
 import com.lubanjianye.biaoxuntong.ui.citypicker.model.LocateState;
 import com.lubanjianye.biaoxuntong.ui.search.activity.SearchActivity;
 import com.lubanjianye.biaoxuntong.ui.sign.SignInActivity;
@@ -202,7 +205,7 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
         //跑马灯效果
         getScrollViewData();
 
-        tvChoose.setText("输入你感兴趣的公告、公示名称");
+        tvChoose.setText("标讯");
 
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
@@ -215,10 +218,10 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
             public void onTabSelect(int position) {
                 switch (position) {
                     case 0:
-                        tvChoose.setText("输入你感兴趣的公告、公示名称");
+                        tvChoose.setText("标讯");
                         break;
                     case 1:
-                        tvChoose.setText("请输入要查询的公司名");
+                        tvChoose.setText("公司");
                         break;
                 }
             }
@@ -339,9 +342,34 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
         switch (view.getId()) {
             case R.id.ll_search:
                 //点击搜素
-                Intent intent = new Intent(getActivity(), SearchActivity.class);
-                intent.putExtra("searchTye", 1);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), SearchActivity.class);
+//                intent.putExtra("searchTye", 1);
+//                startActivity(intent);
+                WXPayParam wxPayParam = new WXPayParam("wxc926d81156adf3f7", "1493799942", "201808071026825576335278082", "Sign=WXPay", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS", "1412000000", "C380BEC2BFD727A4B6845133519F3AD6");
+                PayHelper.getInstance().doWXPay(getContext(), wxPayParam, new PayResultCallBack() {
+                    @Override
+                    public void onSuccess() {
+                        //支付成功
+                        ToastUtil.shortBottonToast(getContext(), "支付成功");
+                    }
+
+                    @Override
+                    public void onDealing() {
+                        ToastUtil.shortBottonToast(getContext(), "处理中");
+                    }
+
+                    @Override
+                    public void onError(int error_code) {
+                        //支付失败
+                        ToastUtil.shortBottonToast(getContext(), "支付失败");
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        //取消支付
+                        ToastUtil.shortBottonToast(getContext(), "取消支付");
+                    }
+                });
                 break;
             case R.id.ll_location:
                 if (!TextUtils.isEmpty(locationArea)) {

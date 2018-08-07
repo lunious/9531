@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="@dimen/d8"
-            android:layout_marginTop="@dimen/d30">
+            android:layout_marginTop="@dimen/d32">
 
 
             <ImageView
@@ -47,7 +47,7 @@
             android:layout_height="@dimen/d52"
             android:layout_below="@+id/ll_location"
             android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/d4"
+            android:layout_marginTop="@dimen/d6"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -55,7 +55,7 @@
                 android:layout_width="@dimen/d44"
                 android:layout_height="@dimen/d44"
                 android:contentDescription="@null"
-                android:src="@mipmap/moren_touxiang" />
+                android:src="@mipmap/log" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -106,12 +106,11 @@
                 android:layout_height="@dimen/d48"
                 tl:tl_iconVisible="false"
                 tl:tl_indicator_color="@color/white"
-                tl:tl_indicator_corner_radius="1.5dp"
-                tl:tl_indicator_height="4dp"
+                tl:tl_indicator_height="6dp"
                 tl:tl_indicator_style="TRIANGLE"
-                tl:tl_indicator_width="12dp"
+                tl:tl_indicator_width="14dp"
                 tl:tl_textSelectColor="@color/white"
-                tl:tl_textsize="18sp" />
+                tl:tl_textsize="16sp" />
 
         </LinearLayout>
 
@@ -139,13 +138,33 @@
                     android:src="@mipmap/img_search" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/d2"
+                    android:text="请输入要查询的"
+                    android:textColor="#9d9d9d"
+                    android:textSize="@dimen/s15" />
+
+                <TextView
                     android:id="@+id/search_choose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:maxLines="1"
                     android:paddingStart="@dimen/d2"
-                    android:text="输入你感兴趣的公告、公示名称"
+                    android:text="标讯"
+                    android:textColor="#9d9d9d"
+                    android:textSize="@dimen/s15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/d2"
+                    android:text="名"
                     android:textColor="#9d9d9d"
                     android:textSize="@dimen/s15" />
             </LinearLayout>

@@ -80,6 +80,12 @@
 
         <activity android:name="me.shaohui.shareutil._ShareActivity" />
 
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <activity-alias
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"

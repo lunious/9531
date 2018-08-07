@@ -20,6 +20,18 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+#======================微信==============================
+-keep class com.tencent.mm.opensdk.** {
+   *;
+}
+-keep class com.tencent.wxop.** {
+   *;
+}
+-keep class com.tencent.mm.sdk.** {
+   *;
+}
+-keep class com.qiming.venus.** { *; }
+
 #======================Arouter==============================
 -keep public class com.alibaba.android.arouter.routes.**{*;}
 -keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
