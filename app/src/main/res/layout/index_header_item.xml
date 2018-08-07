@@ -24,17 +24,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/d48"
-                    android:layout_height="@dimen/d48"
+                    android:layout_width="@dimen/d46"
+                    android:layout_height="@dimen/d46"
                     android:src="@mipmap/zbgg" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d4"
                     android:text="招标公告"
-                    android:textSize="@dimen/s15"
-                    android:layout_marginTop="@dimen/d2"
-                    android:textColor="@color/main_text_color"/>
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/s14" />
 
             </LinearLayout>
 
@@ -46,17 +46,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/d48"
-                    android:layout_height="@dimen/d48"
+                    android:layout_width="@dimen/d46"
+                    android:layout_height="@dimen/d46"
                     android:src="@mipmap/zbgs" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d4"
                     android:text="中标公示"
-                    android:textSize="@dimen/s15"
-                    android:layout_marginTop="@dimen/d2"
-                    android:textColor="@color/main_text_color"/>
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/s14" />
 
             </LinearLayout>
 
@@ -68,17 +68,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/d48"
-                    android:layout_height="@dimen/d48"
+                    android:layout_width="@dimen/d46"
+                    android:layout_height="@dimen/d46"
                     android:src="@mipmap/zfcg" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d4"
                     android:text="政府采购"
-                    android:textSize="@dimen/s15"
-                    android:layout_marginTop="@dimen/d2"
-                    android:textColor="@color/main_text_color"/>
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/s14" />
 
             </LinearLayout>
 
@@ -90,17 +90,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/d48"
-                    android:layout_height="@dimen/d48"
+                    android:layout_width="@dimen/d46"
+                    android:layout_height="@dimen/d46"
                     android:src="@mipmap/jggg" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d4"
                     android:text="结果公告"
-                    android:textSize="@dimen/s15"
-                    android:layout_marginTop="@dimen/d2"
-                    android:textColor="@color/main_text_color"/>
+                    android:textColor="@color/main_text_color"
+                    android:textSize="@dimen/s14" />
 
             </LinearLayout>
 

@@ -40,9 +40,9 @@ public class IndexListAdapter extends BaseQuickAdapter<IndexListBean, BaseViewHo
         helper.setText(R.id.tv_index_title, item.getEntryName());
         helper.setText(R.id.tv_index_address, item.getAddress());
         String type = item.getType();
-        if (!TextUtils.isEmpty(type)) {
-            helper.setText(R.id.tv_index_type, item.getType());
-        }
+//        if (!TextUtils.isEmpty(type)) {
+//            helper.setText(R.id.tv_index_type, item.getType());
+//        }
         String signstauts = item.getSignstauts();
 
         if (signstauts != null) {

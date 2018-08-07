@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d154"
+        android:layout_height="@dimen/d220"
         android:background="@mipmap/bg_index">
 
         <LinearLayout
@@ -15,14 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="@dimen/d30"
-            android:gravity="center">
+            android:layout_marginLeft="@dimen/d8"
+            android:layout_marginTop="@dimen/d30">
 
 
             <ImageView
                 android:layout_width="@dimen/d18"
                 android:layout_height="@dimen/d18"
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
                 android:paddingLeft="@dimen/d4"
                 android:paddingTop="@dimen/d1"
                 android:src="@mipmap/location" />
@@ -32,12 +32,86 @@
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
                 android:maxLines="1"
-                android:paddingLeft="@dimen/d1"
+                android:paddingLeft="@dimen/d2"
                 android:text="四川"
                 android:textColor="@color/main_status_white"
-                android:textSize="@dimen/s16" />
+                android:textSize="@dimen/s15" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bxt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d52"
+            android:layout_below="@+id/ll_location"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/d4"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/d44"
+                android:layout_height="@dimen/d44"
+                android:contentDescription="@null"
+                android:src="@mipmap/moren_touxiang" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d4"
+                android:layout_marginLeft="@dimen/d6"
+                android:layout_marginTop="@dimen/d2"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="鲁班标讯通"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/d16" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/main_status_red">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/d2"
+                        android:layout_marginRight="@dimen/d2"
+                        android:text="招投标大数据服务专家"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/d12" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_bxt"
+            android:gravity="center">
+
+            <com.flyco.tablayout.CommonTabLayout
+                android:id="@+id/search_stl_tab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d48"
+                tl:tl_iconVisible="false"
+                tl:tl_indicator_color="@color/white"
+                tl:tl_indicator_corner_radius="1.5dp"
+                tl:tl_indicator_height="4dp"
+                tl:tl_indicator_style="TRIANGLE"
+                tl:tl_indicator_width="12dp"
+                tl:tl_textSelectColor="@color/white"
+                tl:tl_textsize="18sp" />
 
         </LinearLayout>
 
@@ -48,7 +122,7 @@
             android:layout_height="@dimen/d34"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/d30"
+            android:layout_marginBottom="@dimen/d20"
             android:layout_marginLeft="@dimen/d12"
             android:layout_marginRight="@dimen/d12"
             android:background="@drawable/bg_search">
@@ -64,7 +138,8 @@
                     android:layout_gravity="center"
                     android:src="@mipmap/img_search" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <TextView
+                    android:id="@+id/search_choose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -77,15 +152,6 @@
 
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/d6"
-            android:gravity="center"
-            android:text="招投标大数据服务专家"
-            android:textColor="@color/white" />
 
 
     </RelativeLayout>

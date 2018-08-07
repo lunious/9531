@@ -85,11 +85,10 @@ public class IndexListFragment extends BaseFragment1 {
         urls.add(url_3);
 
         if (indexItemBanner != null) {
-            indexItemBanner.setIndicatorGravity(BannerConfig.RIGHT);
+            indexItemBanner.setIndicatorGravity(BannerConfig.CENTER);
         }
         indexItemBanner.setImages(urls).setImageLoader(new GlideImageLoader()).start();
         indexItemBanner.setDelayTime(4000);
-
 
     }
 

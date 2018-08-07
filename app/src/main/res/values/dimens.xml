@@ -231,6 +231,7 @@
     <dimen name="d198">198.0dp</dimen>
     <dimen name="d199">199.0dp</dimen>
     <dimen name="d200">200.0dp</dimen>
+    <dimen name="d220">220.0dp</dimen>
 
 
     <!--单位为sp-->

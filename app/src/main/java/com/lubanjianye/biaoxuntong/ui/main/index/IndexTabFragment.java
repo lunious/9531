@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -19,12 +21,15 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.SlidingTabLayout;
+import com.flyco.tablayout.listener.CustomTabEntity;
+import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.igexin.sdk.PushManager;
 import com.lubanjianye.biaoxuntong.R;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTong;
 import com.lubanjianye.biaoxuntong.base.BaseFragment1;
-import com.lubanjianye.biaoxuntong.database.DatabaseManager;
-import com.lubanjianye.biaoxuntong.database.UserProfile;
+import com.lubanjianye.biaoxuntong.bean.TabEntity;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
 import com.lubanjianye.biaoxuntong.ui.citypicker.model.LocateState;
@@ -85,7 +90,16 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
     private String locationCode = "";
     private String provinceCode = "";
     private RxTextViewVertical mRxVText = null;
+    private CommonTabLayout SearchStlTab;
+    private TextView tvChoose;
+    private String[] mTitles = {"搜标讯", "搜企业"};
+    private ArrayList<Fragment> mFragments = new ArrayList<>();
+    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
+    private int[] mIconUnselectIds = {
+            R.mipmap.main_index_tab, R.mipmap.main_index_tab};
+    private int[] mIconSelectIds = {
+            R.mipmap.main_index_tab, R.mipmap.main_index_tab};
 
     //跑马灯相关
     private ArrayList<String> titleList = new ArrayList<String>();
@@ -102,8 +116,6 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
 
         mRxVText.startAutoScroll();
     }
-
-
 
 
     @Override
@@ -137,6 +149,8 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
         ll_location = getView().findViewById(R.id.ll_location);
         tv_location = getView().findViewById(R.id.tv_location);
         mRxVText = getView().findViewById(R.id.scroll_view);
+        SearchStlTab = getView().findViewById(R.id.search_stl_tab);
+        tvChoose = getView().findViewById(R.id.search_choose);
         ll_location.setOnClickListener(this);
 
 
@@ -187,6 +201,33 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
 
         //跑马灯效果
         getScrollViewData();
+
+        tvChoose.setText("输入你感兴趣的公告、公示名称");
+
+        for (int i = 0; i < mTitles.length; i++) {
+            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+        }
+
+        SearchStlTab.setTabData(mTabEntities);
+
+        SearchStlTab.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                switch (position) {
+                    case 0:
+                        tvChoose.setText("输入你感兴趣的公告、公示名称");
+                        break;
+                    case 1:
+                        tvChoose.setText("请输入要查询的公司名");
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+
+            }
+        });
 
     }
 

@@ -68,8 +68,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLength="8"
-                        android:text="施工"
-                        android:textColor="#ff999999"
+                        android:text="[招标公告]"
+                        android:textColor="@color/main_status_red"
                         android:textSize="@dimen/s13" />
 
 
