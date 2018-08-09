@@ -113,17 +113,27 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d10"
+        android:background="#88eeeeee"/>
+
     <com.youth.banner.Banner
         android:id="@+id/index_item_banner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d106"
+        android:layout_height="@dimen/d100"
         android:background="@mipmap/default_banner"
         android:visibility="visible"
         app:indicator_drawable_selected="@color/main_theme_color"
         app:indicator_drawable_unselected="@android:color/white"
-        app:indicator_height="@dimen/d4"
+        app:indicator_height="@dimen/d3"
         app:indicator_margin="@dimen/d6"
-        app:indicator_width="@dimen/d4" />
+        app:indicator_width="@dimen/d3" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d10"
+        android:background="#88eeeeee"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
