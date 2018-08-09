@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
@@ -60,7 +61,10 @@ public class IndexListFragment extends BaseFragment1 {
     private RecyclerView indexRecycler = null;
     private SmartRefreshLayout indexRefresh = null;
     private MultipleStatusView loadingStatus = null;
-
+    private LinearLayout llZbgg;
+    private LinearLayout llZbgs;
+    private LinearLayout llCggg;
+    private LinearLayout llJggg;
 
     Banner indexItemBanner = null;
     private static String mDiqu = null;
@@ -272,6 +276,36 @@ public class IndexListFragment extends BaseFragment1 {
         initAdapter();
         initRefreshLayout();
 
+        initButton();
+
+    }
+
+    private void initButton() {
+        llZbgg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/com/ZbggActivity").navigation();
+            }
+        });
+        llZbgs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/com/ZbgsActivity").navigation();
+
+            }
+        });
+        llCggg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/com/CgggActivity").navigation();
+            }
+        });
+        llJggg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/com/JgggActivity").navigation();
+            }
+        });
     }
 
     @Override
@@ -311,6 +345,10 @@ public class IndexListFragment extends BaseFragment1 {
     public View getHeaderView() {
         View view = View.inflate(getContext(), R.layout.index_header_item, null);
         indexItemBanner = view.findViewById(R.id.index_item_banner);
+        llZbgg = view.findViewById(R.id.ll_zbgg);
+        llZbgs = view.findViewById(R.id.ll_zbgs);
+        llCggg = view.findViewById(R.id.ll_cggg);
+        llJggg = view.findViewById(R.id.ll_jggg);
         return view;
     }
 

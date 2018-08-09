@@ -171,6 +171,26 @@
             android:theme="@style/AppTheme.Main"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".ui.main.index.zbgg.ZbggActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Main"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.main.index.zbgs.ZbgsActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Main"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.main.index.cggg.CgggActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Main"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.main.index.jggg.JgggActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Main"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".ui.sign.SignInActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
