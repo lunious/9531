@@ -191,6 +191,11 @@
             android:theme="@style/AppTheme.Main"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".ui.main.index.MoreHyzxActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Main"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".ui.main.index.jggg.JgggActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.Main"

@@ -13,6 +13,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -54,13 +56,16 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -334,7 +339,9 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-
+            case R.id.more_hyzx:
+                ARouter.getInstance().build("/com/MoreHyzxActivity").navigation();
+                break;
             case R.id.ll_search:
                 //点击搜素
                 Intent intent = new Intent(getActivity(), SearchActivity.class);

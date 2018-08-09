@@ -1,10 +1,14 @@
 package com.lubanjianye.biaoxuntong.ui.main.index;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -13,14 +17,14 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.classic.common.MultipleStatusView;
 import com.lubanjianye.biaoxuntong.R;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTong;
-import com.lubanjianye.biaoxuntong.base.BaseFragment1;
+import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
+import com.lubanjianye.biaoxuntong.base.BaseActivity;
 import com.lubanjianye.biaoxuntong.bean.IndexHyzxListBean;
 import com.lubanjianye.biaoxuntong.database.DatabaseManager;
 import com.lubanjianye.biaoxuntong.database.UserProfile;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexHyzxDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.view.loadmore.CustomLoadMoreView;
-import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
 import com.lubanjianye.biaoxuntong.util.netStatus.NetUtil;
 import com.lubanjianye.biaoxuntong.util.sp.AppSharePreferenceMgr;
 import com.lubanjianye.biaoxuntong.util.toast.ToastUtil;
@@ -32,81 +36,55 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 /**
- * 项目名:   LBBXT
- * 包名:     com.lubanjianye.biaoxuntong.ui.main.index
- * 文件名:   IndexHyzxListFragment
- * 创建者:   lunious
- * 创建时间: 2017/12/16  10:23
- * 描述:     TODO
+ * Author: lunious
+ * Date: 2018/8/9 22:20
+ * Description:
  */
-
-public class IndexHyzxListFragment extends BaseFragment1 {
-
-    private RecyclerView indexHyzxRecycler = null;
-    private SmartRefreshLayout indexHyzxRefresh = null;
-    private MultipleStatusView loadingStatus = null;
+@Route(path = "/com/MoreHyzxActivity")
+public class MoreHyzxActivity extends BaseActivity {
+    @BindView(R.id.ll_iv_back)
+    LinearLayout llIvBack;
+    @BindView(R.id.main_bar_name)
+    AppCompatTextView mainBarName;
+    @BindView(R.id.index_hyzx_recycler)
+    RecyclerView indexHyzxRecycler;
+    @BindView(R.id.index_hyzx_list_status_view)
+    MultipleStatusView loadingStatus;
+    @BindView(R.id.index_hyzx_refresh)
+    SmartRefreshLayout indexHyzxRefresh;
 
     private IndexHyzxListAdapter mAdapter;
     private ArrayList<IndexHyzxListBean> mDataList = new ArrayList<>();
 
     private int page = 1;
     private boolean isInitCache = false;
+    private boolean showStatus = true;
 
     @Override
-    public Object setLayout() {
-        return R.layout.fragment_index_hyzx;
+    protected int getLayoutId() {
+        return R.layout.activity_more_hyzx;
     }
 
     @Override
-    public void initView() {
-        indexHyzxRecycler = getView().findViewById(R.id.index_hyzx_recycler);
-        indexHyzxRefresh = getView().findViewById(R.id.index_hyzx_refresh);
-        loadingStatus = getView().findViewById(R.id.index_hyzx_list_status_view);
-
-        //注册EventBus
-        EventBus.getDefault().register(this);
-
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        //取消注册EventBus
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void XXXXXX(EventMessage message) {
-
-        if ("sx".equals(message.getMessage())) {
-            //更新UI
-            indexHyzxRefresh.autoRefresh();
-        }
-
-    }
-
-    @Override
-    public void initData() {
+    protected void initData(Bundle savedInstanceState) {
         initRecyclerView();
         initAdapter();
         initRefreshLayout();
-
+        llIvBack.setVisibility(View.VISIBLE);
+        mainBarName.setText("行业资讯");
     }
 
     @Override
-    public void initEvent() {
-
-        if (!NetUtil.isNetworkConnected(getActivity())) {
-            ToastUtil.shortBottonToast(getContext(), "请检查网络设置");
+    protected void initEvent(Bundle savedInstanceState) {
+        if (!NetUtil.isNetworkConnected(MoreHyzxActivity.this)) {
+            ToastUtil.shortBottonToast(MoreHyzxActivity.this, "请检查网络设置");
             mAdapter.setEnableLoadMore(false);
             if (!isInitCache) {
                 loadingStatus.showLoading();
@@ -114,7 +92,7 @@ public class IndexHyzxListFragment extends BaseFragment1 {
             BiaoXunTong.getHandler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    requestData(true,0);
+                    requestData(true, 0);
                 }
             }, 500);
         } else {
@@ -122,7 +100,7 @@ public class IndexHyzxListFragment extends BaseFragment1 {
             BiaoXunTong.getHandler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    requestData(true,1);
+                    requestData(true, 1);
                 }
             }, 500);
         }
@@ -134,12 +112,12 @@ public class IndexHyzxListFragment extends BaseFragment1 {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
 
-                if (!NetUtil.isNetworkConnected(getActivity())) {
-                    ToastUtil.shortBottonToast(getContext(), "请检查网络设置");
+                if (!NetUtil.isNetworkConnected(MoreHyzxActivity.this)) {
+                    ToastUtil.shortBottonToast(MoreHyzxActivity.this, "请检查网络设置");
                     indexHyzxRefresh.finishRefresh(2000, false);
                     mAdapter.setEnableLoadMore(false);
                 } else {
-                    requestData(true,2);
+                    requestData(true, 2);
                 }
             }
         });
@@ -153,7 +131,7 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
     private void initRecyclerView() {
 
-        indexHyzxRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        indexHyzxRecycler.setLayoutManager(new LinearLayoutManager(MoreHyzxActivity.this));
 
         indexHyzxRecycler.addOnItemTouchListener(new OnItemClickListener() {
             @Override
@@ -179,10 +157,10 @@ public class IndexHyzxListFragment extends BaseFragment1 {
             @Override
             public void onLoadMoreRequested() {
                 //TODO 去加载更多数据
-                if (!NetUtil.isNetworkConnected(getActivity())) {
-                    ToastUtil.shortBottonToast(getContext(), "请检查网络设置");
+                if (!NetUtil.isNetworkConnected(MoreHyzxActivity.this)) {
+                    ToastUtil.shortBottonToast(MoreHyzxActivity.this, "请检查网络设置");
                 } else {
-                    requestData(false,0);
+                    requestData(false, 0);
                 }
             }
         });
@@ -196,12 +174,11 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
     private long id = 0;
 
-    public void requestData(final boolean isRefresh,final int n) {
-
+    public void requestData(final boolean isRefresh, final int n) {
 
         int size = 10 + (int) (Math.random() * 10);
 
-        if (AppSharePreferenceMgr.contains(getContext(), EventMessage.LOGIN_SUCCSS)) {
+        if (AppSharePreferenceMgr.contains(MoreHyzxActivity.this, EventMessage.LOGIN_SUCCSS)) {
             //已登录的数据请求
             List<UserProfile> users = DatabaseManager.getInstance().getDao().loadAll();
 
@@ -229,7 +206,7 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
                                 if (array.size() > 0) {
                                     page = 2;
-                                    setData(isRefresh, array, nextPage,n);
+                                    setData(isRefresh, array, nextPage, n);
                                 } else {
                                     if (mDataList != null) {
                                         mDataList.clear();
@@ -253,7 +230,7 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
 
                                     if (array.size() > 0) {
-                                        setData(isRefresh, array, nextPage,n);
+                                        setData(isRefresh, array, nextPage, n);
                                     } else {
                                         if (mDataList != null) {
                                             mDataList.clear();
@@ -283,7 +260,7 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
 
                                 if (array.size() > 0) {
-                                    setData(isRefresh, array, nextPage,n);
+                                    setData(isRefresh, array, nextPage, n);
                                 } else {
                                     if (mDataList != null) {
                                         mDataList.clear();
@@ -320,7 +297,7 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
                                 if (array.size() > 0) {
                                     page = 2;
-                                    setData(isRefresh, array, nextPage,n);
+                                    setData(isRefresh, array, nextPage, n);
                                 } else {
                                     if (mDataList != null) {
                                         mDataList.clear();
@@ -343,7 +320,7 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
                                     if (array.size() > 0) {
                                         page = 2;
-                                        setData(isRefresh, array, nextPage,n);
+                                        setData(isRefresh, array, nextPage, n);
                                     } else {
                                         if (mDataList != null) {
                                             mDataList.clear();
@@ -373,7 +350,7 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
 
                                 if (array.size() > 0) {
-                                    setData(isRefresh, array, nextPage,n);
+                                    setData(isRefresh, array, nextPage, n);
                                 } else {
                                     if (mDataList != null) {
                                         mDataList.clear();
@@ -389,15 +366,13 @@ public class IndexHyzxListFragment extends BaseFragment1 {
 
         }
 
-
     }
 
 
-    private void setData(boolean isRefresh, JSONArray data, boolean nextPage,int n) {
+    private void setData(boolean isRefresh, JSONArray data, boolean nextPage, int n) {
         List<Integer> imgs = new ArrayList<>();
         final int size = data == null ? 0 : data.size();
         if (isRefresh) {
-            loadingStatus.showContent();
             mDataList.clear();
             for (int i = 0; i < data.size(); i++) {
 
@@ -417,12 +392,13 @@ public class IndexHyzxListFragment extends BaseFragment1 {
                 bean.setImg(imgs.get(i));
                 mDataList.add(bean);
             }
-            indexHyzxRefresh.finishRefresh(0, true);
+            if (showStatus){
+                indexHyzxRefresh.finishRefresh();
+            }
             mAdapter.setEnableLoadMore(true);
 
         } else {
             page++;
-            loadingStatus.showContent();
             if (size > 0) {
                 for (int i = 0; i < data.size(); i++) {
                     imgs.add(R.mipmap.hyzx_1);
@@ -453,7 +429,22 @@ public class IndexHyzxListFragment extends BaseFragment1 {
         }
 
         mAdapter.notifyDataSetChanged();
+        if (showStatus) {
+            loadingStatus.showContent();
+        }
 
+    }
+
+    @OnClick(R.id.ll_iv_back)
+    public void onViewClicked() {
+        finish();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        showStatus = false;
     }
 
 }

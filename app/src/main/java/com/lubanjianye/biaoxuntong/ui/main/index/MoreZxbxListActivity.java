@@ -83,6 +83,7 @@ public class MoreZxbxListActivity extends BaseActivity {
 
     private int page = 1;
     private boolean isInitCache = false;
+    private boolean showStatus = true;
 
     @Override
     protected int getLayoutId() {
@@ -103,7 +104,9 @@ public class MoreZxbxListActivity extends BaseActivity {
         if (!NetUtil.isNetworkConnected(MoreZxbxListActivity.this)) {
             ToastUtil.shortBottonToast(MoreZxbxListActivity.this, "请检查网络设置");
             mAdapter.setEnableLoadMore(false);
-
+            if (!isInitCache) {
+                loadingStatus.showLoading();
+            }
             BiaoXunTong.getHandler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -111,6 +114,7 @@ public class MoreZxbxListActivity extends BaseActivity {
                 }
             }, 500);
         } else {
+            loadingStatus.showLoading();
             BiaoXunTong.getHandler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -259,9 +263,6 @@ public class MoreZxbxListActivity extends BaseActivity {
 
     public void requestData(final boolean isRefresh, final int n) {
 
-        if (n == 1){
-            loadingStatus.showLoading();
-        }
 
         int size = 10 + (int) (Math.random() * 5);
 
@@ -516,7 +517,6 @@ public class MoreZxbxListActivity extends BaseActivity {
     private void setData(boolean isRefresh, JSONArray data, boolean nextPage, int n) {
         final int size = data == null ? 0 : data.size();
         if (isRefresh) {
-            loadingStatus.showContent();
             mDataList.clear();
             for (int i = 0; i < data.size(); i++) {
                 IndexListBean bean = new IndexListBean();
@@ -534,12 +534,14 @@ public class MoreZxbxListActivity extends BaseActivity {
                 bean.setIsCorrections(list.getString("isCorrections"));
                 mDataList.add(bean);
             }
-            indexRefresh.finishRefresh(0, true);
+
+            if (showStatus) {
+                indexRefresh.finishRefresh();
+            }
             mAdapter.setEnableLoadMore(true);
 
         } else {
             page++;
-            loadingStatus.showContent();
             if (size > 0) {
                 for (int i = 0; i < data.size(); i++) {
                     IndexListBean bean = new IndexListBean();
@@ -569,7 +571,12 @@ public class MoreZxbxListActivity extends BaseActivity {
             mAdapter.loadMoreComplete();
         }
 
+
         mAdapter.notifyDataSetChanged();
+
+        if (showStatus) {
+            loadingStatus.showContent();
+        }
 
     }
 
@@ -577,5 +584,12 @@ public class MoreZxbxListActivity extends BaseActivity {
     @OnClick(R.id.ll_iv_back)
     public void onViewClicked() {
         finish();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        showStatus = false;
     }
 }

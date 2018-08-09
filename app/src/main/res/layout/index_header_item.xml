@@ -113,10 +113,6 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d10"
-        android:background="#88eeeeee"/>
 
     <com.youth.banner.Banner
         android:id="@+id/index_item_banner"
@@ -130,10 +126,6 @@
         app:indicator_margin="@dimen/d6"
         app:indicator_width="@dimen/d3" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d10"
-        android:background="#88eeeeee"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

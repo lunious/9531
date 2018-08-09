@@ -45,10 +45,10 @@
         <LinearLayout
             android:id="@+id/ll_bxt"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/d52"
+            android:layout_height="@dimen/d50"
             android:layout_below="@+id/ll_location"
             android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/d8"
+            android:layout_marginTop="@dimen/d6"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/ll_search"
-            android:layout_marginBottom="@dimen/d8"
+            android:layout_marginBottom="@dimen/d6"
             android:gravity="center">
 
             <com.flyco.tablayout.CommonTabLayout
@@ -109,9 +109,9 @@
                 android:layout_height="@dimen/d40"
                 tl:tl_iconVisible="false"
                 tl:tl_indicator_color="@color/white"
-                tl:tl_indicator_height="6dp"
+                tl:tl_indicator_height="4dp"
                 tl:tl_indicator_style="TRIANGLE"
-                tl:tl_indicator_width="14dp"
+                tl:tl_indicator_width="12dp"
                 tl:tl_tab_padding="@dimen/d12"
                 tl:tl_textSelectColor="@color/white"
                 tl:tl_textsize="16sp" />
