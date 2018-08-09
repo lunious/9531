@@ -1,12 +1,15 @@
 package com.lubanjianye.biaoxuntong.ui.main.index;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -16,24 +19,23 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.classic.common.MultipleStatusView;
 import com.lubanjianye.biaoxuntong.R;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTong;
-import com.lubanjianye.biaoxuntong.base.BaseFragment1;
+import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
+import com.lubanjianye.biaoxuntong.base.BaseActivity;
 import com.lubanjianye.biaoxuntong.bean.IndexListBean;
 import com.lubanjianye.biaoxuntong.database.DatabaseManager;
 import com.lubanjianye.biaoxuntong.database.UserProfile;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
-import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
 import com.lubanjianye.biaoxuntong.ui.detail.IndexArticleDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjycgrowDetailActivity;
-import com.lubanjianye.biaoxuntong.ui.view.loadmore.CustomLoadMoreView;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexBxtgdjDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexScgggDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjyDetailActivity;
+import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjycgrowDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexSggjycgtableDetailActivity;
 import com.lubanjianye.biaoxuntong.ui.main.index.detail.sichuan.IndexXcgggDetailActivity;
+import com.lubanjianye.biaoxuntong.ui.view.loadmore.CustomLoadMoreView;
 import com.lubanjianye.biaoxuntong.util.aes.AesUtil;
-import com.lubanjianye.biaoxuntong.util.loader.GlideImageLoader;
-import com.lubanjianye.biaoxuntong.util.netStatus.NetUtil;
 import com.lubanjianye.biaoxuntong.util.netStatus.AppSysMgr;
+import com.lubanjianye.biaoxuntong.util.netStatus.NetUtil;
 import com.lubanjianye.biaoxuntong.util.sp.AppSharePreferenceMgr;
 import com.lubanjianye.biaoxuntong.util.toast.ToastUtil;
 import com.lzy.okgo.OkGo;
@@ -43,29 +45,34 @@ import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.listener.OnBannerListener;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class IndexListFragment extends BaseFragment1 {
 
-    private RecyclerView indexRecycler = null;
-    private SmartRefreshLayout indexRefresh = null;
-    private MultipleStatusView loadingStatus = null;
-    private LinearLayout llZbgg;
-    private LinearLayout llZbgs;
-    private LinearLayout llCggg;
-    private LinearLayout llJggg;
-    private LinearLayout llMoreZxbx;
+/**
+ * Author: lunious
+ * Date: 2018/8/9 21:36
+ * Description:
+ */
+@Route(path = "/com/MoreZxbxListActivity")
+public class MoreZxbxListActivity extends BaseActivity {
+    @BindView(R.id.index_recycler)
+    RecyclerView indexRecycler;
+    @BindView(R.id.index_list_status_view)
+    MultipleStatusView loadingStatus;
+    @BindView(R.id.index_refresh)
+    SmartRefreshLayout indexRefresh;
 
-    Banner indexItemBanner = null;
     private static String mDiqu = null;
+    @BindView(R.id.ll_iv_back)
+    LinearLayout llIvBack;
+    @BindView(R.id.main_bar_name)
+    AppCompatTextView mainBarName;
 
 
     private String deviceId = AppSysMgr.getPsuedoUniqueID();
@@ -77,21 +84,40 @@ public class IndexListFragment extends BaseFragment1 {
     private int page = 1;
     private boolean isInitCache = false;
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_more_zxbx;
+    }
 
-    //轮播图
-    private void initBanner() {
-        final List<String> urls = new ArrayList<>();
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        initRecyclerView();
+        initAdapter();
+        initRefreshLayout();
+        llIvBack.setVisibility(View.VISIBLE);
+        mainBarName.setText("最新标讯");
+    }
 
-        urls.add(url_1);
-        urls.add(url_2);
-        urls.add(url_3);
+    @Override
+    protected void initEvent(Bundle savedInstanceState) {
+        if (!NetUtil.isNetworkConnected(MoreZxbxListActivity.this)) {
+            ToastUtil.shortBottonToast(MoreZxbxListActivity.this, "请检查网络设置");
+            mAdapter.setEnableLoadMore(false);
 
-        if (indexItemBanner != null) {
-            indexItemBanner.setIndicatorGravity(BannerConfig.CENTER);
+            BiaoXunTong.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    requestData(true, 0);
+                }
+            }, 500);
+        } else {
+            BiaoXunTong.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    requestData(true, 1);
+                }
+            }, 500);
         }
-        indexItemBanner.setImages(urls).setImageLoader(new GlideImageLoader()).start();
-        indexItemBanner.setDelayTime(4000);
-
     }
 
     private void initRefreshLayout() {
@@ -101,8 +127,8 @@ public class IndexListFragment extends BaseFragment1 {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
 
-                if (!NetUtil.isNetworkConnected(getActivity())) {
-                    ToastUtil.shortBottonToast(getContext(), "请检查网络设置");
+                if (!NetUtil.isNetworkConnected(MoreZxbxListActivity.this)) {
+                    ToastUtil.shortBottonToast(MoreZxbxListActivity.this, "请检查网络设置");
                     indexRefresh.finishRefresh(2000, false);
                     mAdapter.setEnableLoadMore(false);
                 } else {
@@ -111,15 +137,13 @@ public class IndexListFragment extends BaseFragment1 {
             }
         });
 
-
 //        indexRefresh.autoRefresh();
 
     }
 
-
     private void initRecyclerView() {
 
-        indexRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        indexRecycler.setLayoutManager(new LinearLayoutManager(MoreZxbxListActivity.this));
 
         indexRecycler.addOnItemTouchListener(new OnItemClickListener() {
             @Override
@@ -208,17 +232,13 @@ public class IndexListFragment extends BaseFragment1 {
 
 
         mAdapter = new IndexListAdapter(R.layout.fragment_index_zxbx_item, mDataList);
-        mAdapter.addHeaderView(getHeaderView());
-        getImage();
-        indexItemBanner.setVisibility(View.VISIBLE);
-
 
         mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
                 //TODO 去加载更多数据
-                if (!NetUtil.isNetworkConnected(getActivity())) {
-                    ToastUtil.shortBottonToast(getContext(), "请检查网络设置");
+                if (!NetUtil.isNetworkConnected(MoreZxbxListActivity.this)) {
+                    ToastUtil.shortBottonToast(MoreZxbxListActivity.this, "请检查网络设置");
                 } else {
                     requestData(false, 0);
                 }
@@ -234,185 +254,22 @@ public class IndexListFragment extends BaseFragment1 {
     }
 
 
-    @Override
-    public Object setLayout() {
-        return R.layout.fragment_index_list;
-    }
-
-    @Override
-    public void initView() {
-        indexRecycler = getView().findViewById(R.id.index_recycler);
-        indexRefresh = getView().findViewById(R.id.index_refresh);
-        loadingStatus = getView().findViewById(R.id.index_list_status_view);
-
-        //注册EventBus
-        EventBus.getDefault().register(this);
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        //取消注册EventBus
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void XXXXXX(EventMessage message) {
-
-        if ("sx".equals(message.getMessage())) {
-            //更新UI
-            indexRefresh.autoRefresh();
-        }
-
-    }
-
-    @Override
-    public void initData() {
-        initRecyclerView();
-        initAdapter();
-        initRefreshLayout();
-
-        initButton();
-
-    }
-
-    private void initButton() {
-        llZbgg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build("/com/ZbggActivity").navigation();
-            }
-        });
-        llZbgs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build("/com/ZbgsActivity").navigation();
-
-            }
-        });
-        llCggg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build("/com/CgggActivity").navigation();
-            }
-        });
-        llJggg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build("/com/JgggActivity").navigation();
-            }
-        });
-        llMoreZxbx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build("/com/MoreZxbxListActivity").navigation();
-            }
-        });
-    }
-
-    @Override
-    public void initEvent() {
-
-        if (!NetUtil.isNetworkConnected(getActivity())) {
-            ToastUtil.shortBottonToast(getContext(), "请检查网络设置");
-            mAdapter.setEnableLoadMore(false);
-
-            BiaoXunTong.getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    requestData(true, 0);
-                }
-            }, 500);
-        } else {
-            BiaoXunTong.getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    requestData(true, 1);
-                }
-            }, 500);
-        }
-
-    }
-
     private long id = 0;
 
-    String url_1 = "";
-    String url_2 = "";
-    String url_3 = "";
-
-    String detail_1 = "";
-    String detail_2 = "";
-    String detail_3 = "";
-
-    public View getHeaderView() {
-        View view = View.inflate(getContext(), R.layout.index_header_item, null);
-        indexItemBanner = view.findViewById(R.id.index_item_banner);
-        llZbgg = view.findViewById(R.id.ll_zbgg);
-        llZbgs = view.findViewById(R.id.ll_zbgs);
-        llCggg = view.findViewById(R.id.ll_cggg);
-        llJggg = view.findViewById(R.id.ll_jggg);
-        llMoreZxbx = view.findViewById(R.id.ll_more_zxbx);
-        return view;
-    }
-
-    public void getImage() {
-
-        OkGo.<String>post(BiaoXunTongApi.URL_GETINDEXBANNER)
-                .params("imgType", 1)
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        final JSONObject object = JSON.parseObject(response.body());
-
-                        String status = object.getString("status");
-                        String message = object.getString("message");
-
-                        if ("200".equals(status)) {
-                            final JSONObject data = object.getJSONObject("data");
-                            url_1 = data.getString("imgOnePath");
-                            url_2 = data.getString("imgTwoPath");
-                            url_3 = data.getString("imgThreePath");
-                            detail_1 = data.getString("imgOneUrl");
-                            detail_2 = data.getString("imgTwoUrl");
-                            detail_3 = data.getString("imgThreeUrl");
-
-                            Log.d("AUSHGDUYGSAUGDBSADAS", url_1);
-
-                        } else {
-                            ToastUtil.shortToast(getContext(), message);
-                        }
-                        initBanner();
-                    }
-                });
-
-        indexItemBanner.setOnBannerListener(new OnBannerListener() {
-            @Override
-            public void OnBannerClick(int position) {
-
-                Intent intent = null;
-
-                if (position == 0) {
-                    toShare(0, "我正在使用【鲁班标讯通】,推荐给你", "企业资质、人员资格、业绩、信用奖惩、经营风险、法律诉讼一键查询！", detail_1);
-                } else if (position == 1) {
-                    ARouter.getInstance().build("/com/BrowserActivity").withString("mUrl", detail_2).withString("mTitle", "鲁班建业通-招投标神器").navigation();
-                } else {
-                    ARouter.getInstance().build("/com/BrowserActivity").withString("mUrl", detail_3).withString("mTitle", "鲁班建业通-招投标神器").navigation();
-                }
-            }
-        });
-    }
 
     public void requestData(final boolean isRefresh, final int n) {
 
+        if (n == 1){
+            loadingStatus.showLoading();
+        }
 
         int size = 10 + (int) (Math.random() * 5);
 
-        if (AppSharePreferenceMgr.contains(getContext(), EventMessage.LOCA_AREA)) {
-            mDiqu = (String) AppSharePreferenceMgr.get(getContext(), EventMessage.LOCA_AREA, "");
+        if (AppSharePreferenceMgr.contains(MoreZxbxListActivity.this, EventMessage.LOCA_AREA)) {
+            mDiqu = (String) AppSharePreferenceMgr.get(MoreZxbxListActivity.this, EventMessage.LOCA_AREA, "");
         }
 
-        if (AppSharePreferenceMgr.contains(getContext(), EventMessage.LOGIN_SUCCSS)) {
+        if (AppSharePreferenceMgr.contains(MoreZxbxListActivity.this, EventMessage.LOGIN_SUCCSS)) {
             //已登录的数据请求
             List<UserProfile> users = DatabaseManager.getInstance().getDao().loadAll();
             for (int i = 0; i < users.size(); i++) {
@@ -458,7 +315,7 @@ public class IndexListFragment extends BaseFragment1 {
                                         indexRefresh.setEnableRefresh(false);
                                     }
                                 } else {
-                                    ToastUtil.shortToast(getContext(), message);
+                                    ToastUtil.shortToast(MoreZxbxListActivity.this, message);
                                 }
                             }
 
@@ -488,7 +345,7 @@ public class IndexListFragment extends BaseFragment1 {
                                             indexRefresh.setEnableRefresh(false);
                                         }
                                     } else {
-                                        ToastUtil.shortToast(getContext(), message);
+                                        ToastUtil.shortToast(MoreZxbxListActivity.this, message);
                                     }
                                     isInitCache = true;
                                 }
@@ -529,7 +386,7 @@ public class IndexListFragment extends BaseFragment1 {
                                         indexRefresh.setEnableRefresh(false);
                                     }
                                 } else {
-                                    ToastUtil.shortToast(getContext(), message);
+                                    ToastUtil.shortToast(MoreZxbxListActivity.this, message);
                                 }
                             }
                         });
@@ -576,7 +433,7 @@ public class IndexListFragment extends BaseFragment1 {
                                         indexRefresh.setEnableRefresh(false);
                                     }
                                 } else {
-                                    ToastUtil.shortToast(getContext(), message);
+                                    ToastUtil.shortToast(MoreZxbxListActivity.this, message);
                                 }
 
                             }
@@ -607,7 +464,7 @@ public class IndexListFragment extends BaseFragment1 {
                                             indexRefresh.setEnableRefresh(false);
                                         }
                                     } else {
-                                        ToastUtil.shortToast(getContext(), message);
+                                        ToastUtil.shortToast(MoreZxbxListActivity.this, message);
                                     }
                                     isInitCache = true;
                                 }
@@ -646,7 +503,7 @@ public class IndexListFragment extends BaseFragment1 {
                                         indexRefresh.setEnableRefresh(false);
                                     }
                                 } else {
-                                    ToastUtil.shortToast(getContext(), message);
+                                    ToastUtil.shortToast(MoreZxbxListActivity.this, message);
                                 }
                             }
                         });
@@ -716,4 +573,9 @@ public class IndexListFragment extends BaseFragment1 {
 
     }
 
+
+    @OnClick(R.id.ll_iv_back)
+    public void onViewClicked() {
+        finish();
+    }
 }
