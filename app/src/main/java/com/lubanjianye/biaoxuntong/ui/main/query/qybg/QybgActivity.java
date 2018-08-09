@@ -5,6 +5,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -55,6 +57,16 @@ public class QybgActivity extends BaseActivity {
     String sfId;
     @Autowired
     String companyName;
+    @BindView(R.id.iv_ye_pay)
+    ImageView ivYePay;
+    @BindView(R.id.iv_wx_pay)
+    ImageView ivWxPay;
+    @BindView(R.id.ll_ye_pay)
+    LinearLayout llYePay;
+    @BindView(R.id.ll_wx_pay)
+    LinearLayout llWxPay;
+    @BindView(R.id.coin_num)
+    TextView coinNum;
 
 
     private PromptDialog promptDialog;
@@ -89,6 +101,7 @@ public class QybgActivity extends BaseActivity {
     protected void initEvent(Bundle savedInstanceState) {
 
         tvBgcompany.setText(companyName);
+        etBgemail.setCursorVisible(false);
         List<UserProfile> users = DatabaseManager.getInstance().getDao().loadAll();
 
         for (int i = 0; i < users.size(); i++) {
@@ -99,21 +112,35 @@ public class QybgActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.ll_iv_back, R.id.btn_sure_send})
+    @OnClick({R.id.ll_iv_back, R.id.btn_sure_send, R.id.ll_ye_pay, R.id.ll_wx_pay})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.ll_ye_pay:
+                ivYePay.setImageDrawable(getResources().getDrawable(R.mipmap.ok));
+                ivWxPay.setImageDrawable(getResources().getDrawable(R.mipmap.no_ok));
+                coinNum.setText("200鲁班币");
+                break;
+            case R.id.ll_wx_pay:
+                ivWxPay.setImageDrawable(getResources().getDrawable(R.mipmap.ok));
+                ivYePay.setImageDrawable(getResources().getDrawable(R.mipmap.no_ok));
+                coinNum.setText("￥20元");
+                break;
+            case R.id.et_bgemail:
+                etBgemail.setHint("");
+                etBgemail.setCursorVisible(true);
+                break;
             case R.id.ll_iv_back:
                 finish();
                 break;
             case R.id.btn_sure_send:
                 email = etBgemail.getText().toString();
 
-                Log.d("NBAJISDASDDASD",sfId+"___"+email+"__"+mobile+"__"+token+"____"+userId);
+                Log.d("NBAJISDASDDASD", sfId + "___" + email + "__" + mobile + "__" + token + "____" + userId);
 
                 if (Pattern.matches(REGEX_EMAIL, email)) {
                     promptDialog.showLoading("正在发送...");
                     OkGo.<String>post(BiaoXunTongApi.URL_SENDPDF)
-                            .params("sfId",sfId)
+                            .params("sfId", sfId)
                             .params("email", email)
                             .params("mobile", mobile)
                             .params("token", token)
@@ -124,13 +151,13 @@ public class QybgActivity extends BaseActivity {
                                     final JSONObject object = JSON.parseObject(response.body());
                                     final String status = object.getString("status");
                                     final String message = object.getString("message");
-                                    if ("200".equals(status)){
+                                    if ("200".equals(status)) {
                                         promptDialog.dismissImmediately();
-                                        ToastUtil.shortBottonToast(QybgActivity.this,"发送成功，请注意查收邮箱!");
+                                        ToastUtil.shortBottonToast(QybgActivity.this, "发送成功，请注意查收邮箱!");
                                         finish();
-                                    }else {
+                                    } else {
                                         promptDialog.dismissImmediately();
-                                        ToastUtil.shortBottonToast(QybgActivity.this,"请检查邮箱地址是否正确!");
+                                        ToastUtil.shortBottonToast(QybgActivity.this, "请检查邮箱地址是否正确!");
                                     }
                                 }
                             });
@@ -141,4 +168,5 @@ public class QybgActivity extends BaseActivity {
                 break;
         }
     }
+
 }

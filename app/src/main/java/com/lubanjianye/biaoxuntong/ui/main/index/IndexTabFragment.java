@@ -32,9 +32,6 @@ import com.lubanjianye.biaoxuntong.base.BaseFragment1;
 import com.lubanjianye.biaoxuntong.bean.TabEntity;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
 import com.lubanjianye.biaoxuntong.app.BiaoXunTongApi;
-import com.lubanjianye.biaoxuntong.pay.PayHelper;
-import com.lubanjianye.biaoxuntong.pay.PayResultCallBack;
-import com.lubanjianye.biaoxuntong.pay.WXPayParam;
 import com.lubanjianye.biaoxuntong.ui.citypicker.model.LocateState;
 import com.lubanjianye.biaoxuntong.ui.search.activity.SearchActivity;
 import com.lubanjianye.biaoxuntong.ui.sign.SignInActivity;
@@ -55,7 +52,6 @@ import com.lubanjianye.biaoxuntong.util.dialog.PromptDialog;
 import com.lubanjianye.biaoxuntong.util.netStatus.NetUtil;
 import com.lubanjianye.biaoxuntong.util.rx.RxTextViewVertical;
 import com.lubanjianye.biaoxuntong.util.sp.AppSharePreferenceMgr;
-import com.lubanjianye.biaoxuntong.util.toast.ToastUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
@@ -98,6 +94,7 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
     private String[] mTitles = {"搜标讯", "搜企业"};
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+    private TextView tvHyzx;
 
     private int[] mIconUnselectIds = {
             R.mipmap.main_index_tab, R.mipmap.main_index_tab};
@@ -154,6 +151,8 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
         mRxVText = getView().findViewById(R.id.scroll_view);
         SearchStlTab = getView().findViewById(R.id.search_stl_tab);
         tvChoose = getView().findViewById(R.id.search_choose);
+        tvHyzx = getView().findViewById(R.id.more_hyzx);
+        tvHyzx.setOnClickListener(this);
         ll_location.setOnClickListener(this);
 
 
@@ -340,36 +339,12 @@ public class IndexTabFragment extends BaseFragment1 implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+
             case R.id.ll_search:
                 //点击搜素
-//                Intent intent = new Intent(getActivity(), SearchActivity.class);
-//                intent.putExtra("searchTye", 1);
-//                startActivity(intent);
-                WXPayParam wxPayParam = new WXPayParam("wxc926d81156adf3f7", "1493799942", "201808071026825576335278082", "Sign=WXPay", "5K8264ILTKCH16CQ2502SI8ZNMTM67VS", "1412000000", "C380BEC2BFD727A4B6845133519F3AD6");
-                PayHelper.getInstance().doWXPay(getContext(), wxPayParam, new PayResultCallBack() {
-                    @Override
-                    public void onSuccess() {
-                        //支付成功
-                        ToastUtil.shortBottonToast(getContext(), "支付成功");
-                    }
-
-                    @Override
-                    public void onDealing() {
-                        ToastUtil.shortBottonToast(getContext(), "处理中");
-                    }
-
-                    @Override
-                    public void onError(int error_code) {
-                        //支付失败
-                        ToastUtil.shortBottonToast(getContext(), "支付失败");
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        //取消支付
-                        ToastUtil.shortBottonToast(getContext(), "取消支付");
-                    }
-                });
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("searchTye", 1);
+                startActivity(intent);
                 break;
             case R.id.ll_location:
                 if (!TextUtils.isEmpty(locationArea)) {

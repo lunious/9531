@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -23,6 +24,9 @@ import com.lubanjianye.biaoxuntong.base.BaseActivity;
 import com.lubanjianye.biaoxuntong.database.DatabaseManager;
 import com.lubanjianye.biaoxuntong.database.UserProfile;
 import com.lubanjianye.biaoxuntong.eventbus.EventMessage;
+import com.lubanjianye.biaoxuntong.pay.PayHelper;
+import com.lubanjianye.biaoxuntong.pay.PayResultCallBack;
+import com.lubanjianye.biaoxuntong.pay.WXPayParam;
 import com.lubanjianye.biaoxuntong.ui.main.user.company.BindCompanyActivity;
 import com.lubanjianye.biaoxuntong.ui.media.SelectImageActivity;
 import com.lubanjianye.biaoxuntong.ui.media.config.SelectOptions;
@@ -50,6 +54,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pub.devrel.easypermissions.EasyPermissions;
+
 
 
 @Route(path = "/com/AvaterActivity")
@@ -115,6 +120,7 @@ public class AvaterActivity extends BaseActivity implements EasyPermissions.Perm
         llIvBack.setVisibility(View.VISIBLE);
         mainBarName.setText("个人中心");
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void XXXXXX(EventMessage message) {
 
@@ -208,6 +214,7 @@ public class AvaterActivity extends BaseActivity implements EasyPermissions.Perm
         }
 
     }
+
     public void requestData() {
 
         List<UserProfile> users = DatabaseManager.getInstance().getDao().loadAll();
@@ -338,7 +345,75 @@ public class AvaterActivity extends BaseActivity implements EasyPermissions.Perm
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_iv_back:
-                finish();
+//                finish();
+                OkGo.<String>post("http://www.lubanjianye.com:8060/apporder/placeAnOrder")
+                        .params("month", "1")
+                        .params("payMethod", "wxPay")
+                        .params("acceptProtocol", "true")
+                        .params("mobile", mobile)
+                        .params("userId", id)
+                        .params("token", token)
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                final JSONObject userInfo = JSON.parseObject(response.body());
+                                final String data = userInfo.getString("data");
+
+                                OkGo.<String>get("http://www.lubanjianye.com:8060/apporder/pay/" + data)
+                                        .execute(new StringCallback() {
+                                            @Override
+                                            public void onSuccess(Response<String> response) {
+                                                Log.d("YGBDASHDUYBASD", response.body());
+                                                final JSONObject userInfo = JSON.parseObject(response.body());
+                                                final JSONObject data = userInfo.getJSONObject("data");
+                                                String pack = data.getString("package");
+                                                String appid = data.getString("appid");
+                                                String sign = data.getString("sign");
+                                                String partnerid = data.getString("partnerid");
+                                                String prepayid = data.getString("prepayid");
+                                                String noncestr = data.getString("noncestr");
+                                                String timestamp = data.getString("timestamp");
+
+                                                Log.d("IAUSGBDSADSAD", "pack==" + pack);
+                                                Log.d("IAUSGBDSADSAD", "appid==" + appid);
+                                                Log.d("IAUSGBDSADSAD", "sign==" + sign);
+                                                Log.d("IAUSGBDSADSAD", "partnerid==" + partnerid);
+                                                Log.d("IAUSGBDSADSAD", "prepayid==" + prepayid);
+                                                Log.d("IAUSGBDSADSAD", "noncestr==" + noncestr);
+                                                Log.d("IAUSGBDSADSAD", "timestamp==" + timestamp);
+
+
+                                                WXPayParam wxPayParam = new WXPayParam(appid, partnerid, prepayid, pack, noncestr, timestamp + "",
+                                                        sign);
+                                                PayHelper.getInstance().doWXPay(AvaterActivity.this, wxPayParam, new PayResultCallBack() {
+                                                    @Override
+                                                    public void onSuccess() {
+                                                        //支付成功
+                                                        ToastUtil.shortBottonToast(AvaterActivity.this, "支付成功");
+                                                    }
+
+                                                    @Override
+                                                    public void onDealing() {
+                                                        ToastUtil.shortBottonToast(AvaterActivity.this, "处理中");
+                                                    }
+
+                                                    @Override
+                                                    public void onError(int error_code) {
+                                                        //支付失败
+                                                        ToastUtil.shortBottonToast(AvaterActivity.this, "支付失败" + error_code);
+                                                    }
+
+                                                    @Override
+                                                    public void onCancel() {
+                                                        //取消支付
+                                                        ToastUtil.shortBottonToast(AvaterActivity.this, "取消支付");
+                                                    }
+                                                });
+
+                                            }
+                                        });
+                            }
+                        });
                 break;
             case R.id.img_user_avatar:
                 SelectImageActivity.show(this, new SelectOptions.Builder()

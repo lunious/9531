@@ -30,7 +30,7 @@ public class PayHelper {
      * @param callBack  回调
      */
     public void doWXPay(Context context, WXPayParam payParams, PayResultCallBack callBack) {
-        WXPay.getInstance().init(context).doPay(payParams, callBack);
+        WXPay.init(context).doPay(payParams, callBack);
     }
 
 }

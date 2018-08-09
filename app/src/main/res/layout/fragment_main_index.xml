@@ -12,19 +12,21 @@
 
         <LinearLayout
             android:id="@+id/ll_location"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/d8"
+            android:layout_marginRight="@dimen/d10"
             android:layout_marginTop="@dimen/d32">
 
 
             <ImageView
                 android:layout_width="@dimen/d18"
                 android:layout_height="@dimen/d18"
-                android:layout_gravity="center_vertical"
                 android:paddingLeft="@dimen/d4"
-                android:paddingTop="@dimen/d1"
+                android:paddingTop="@dimen/d2"
                 android:src="@mipmap/location" />
 
 
@@ -32,7 +34,6 @@
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:maxLines="1"
                 android:paddingLeft="@dimen/d2"
                 android:text="四川"
@@ -47,7 +48,7 @@
             android:layout_height="@dimen/d52"
             android:layout_below="@+id/ll_location"
             android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/d6"
+            android:layout_marginTop="@dimen/d8"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -95,25 +96,27 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/ll_search_choose"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_bxt"
+            android:layout_above="@+id/ll_search"
+            android:layout_marginBottom="@dimen/d8"
             android:gravity="center">
 
             <com.flyco.tablayout.CommonTabLayout
                 android:id="@+id/search_stl_tab"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/d48"
+                android:layout_height="@dimen/d40"
                 tl:tl_iconVisible="false"
                 tl:tl_indicator_color="@color/white"
                 tl:tl_indicator_height="6dp"
                 tl:tl_indicator_style="TRIANGLE"
                 tl:tl_indicator_width="14dp"
+                tl:tl_tab_padding="@dimen/d12"
                 tl:tl_textSelectColor="@color/white"
                 tl:tl_textsize="16sp" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/ll_search"
@@ -121,7 +124,7 @@
             android:layout_height="@dimen/d34"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/d20"
+            android:layout_marginBottom="@dimen/d14"
             android:layout_marginLeft="@dimen/d12"
             android:layout_marginRight="@dimen/d12"
             android:background="@drawable/bg_search">
@@ -204,7 +207,7 @@
                 android:layout_marginRight="@dimen/d4"
                 android:gravity="center"
                 android:text="行业资讯"
-                android:textColor="#9e9e9e"
+                android:textColor="#6c6c6c"
                 android:textSize="@dimen/d14" />
 
 
@@ -218,8 +221,8 @@
                 android:gravity="center_vertical"
                 android:maxLines="1" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/vip_detail"
+            <TextView
+                android:id="@+id/more_hyzx"
                 android:layout_width="@dimen/d0"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/d4"
